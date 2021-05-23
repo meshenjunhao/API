@@ -1,0 +1,276 @@
+{var title=后台首页}
+{var tplindex=true}
+{include("head.html")}      
+     <!-- <div class="container-fluid p-t-15">
+  
+      <div class="col-sm-6 col-md-3">
+      <div class="card">
+        <div class="card-body clearfix">
+          <div class="pull-right">
+            <p class="h6 m-t-0">接口数量</p>
+            <p class="h3 m-b-0">{$api} 个</p>
+          </div>
+          <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-pink"><i class="mdi mdi-leaf fa-1-5x"></i></span> </div>
+        </div>
+      </div>
+    </div>-->
+      <div class="container-fluid p-t-15">
+    
+        <div class="row">
+          <div class="col-md-6 col-xl-3">
+            <div class="card text-white">
+              <div class="card-body clearfix">
+                <div class="flex-box">
+                  <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-leaf fs-22"></i></span>
+                  <span class="fs-22 lh-22"><font color="#242424">{$api} 个</font></span>
+                </div>
+                <div class="text-right"><font size="4" color="#242424">接口数量</font></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 col-xl-3">
+            <div class="card text-white">
+              <div class="card-body clearfix">
+                <div class="flex-box">
+                  <span class="img-avatar img-avatar-48 bg-pink"><i class="mdi mdi-seat-recline-normal fs-22"></i></span>
+                  <span class="fs-22 lh-22"><font color="#242424">{$normal} 个</font></span>
+                </div>
+                <div class="text-right"><font size="4" color="#242424">正常接口</font></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 col-xl-3">
+            <div class="card text-white">
+              <div class="card-body clearfix">
+                <div class="flex-box">
+                  <span class="img-avatar img-avatar-48 bg-cyan"><i class="mdi mdi-alert fs-22"></i></span>
+                  <span class="fs-22 lh-22"><font color="#242424">{$anomaly} 个</font></span>
+                </div>
+                <div class="text-right"><font size="4" color="#242424">异常接口</font></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 col-xl-3">
+            <div class="card text-white">
+              <div class="card-body clearfix">
+                <div class="flex-box">
+                  <span class="img-avatar img-avatar-48 bg-purple"><i class="mdi mdi-image-filter-drama fs-22"></i></span>
+                  <span class="fs-22 lh-22"><font color="#242424">{$apicall} 次</font></span>
+                </div>
+                <div class="text-right"><font size="4" color="#242424">调用数量</font></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-md-6"> 
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">PV统计</div>
+              </div>
+              <div class="card-body">
+                <canvas class="js-chartjs-bars"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6"> 
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">调用统计</div>
+              </div>
+              <div class="card-body">
+                <canvas class="js-chartjs-lines"></canvas>
+              </div>
+            </div>
+          </div>
+           
+        </div>
+        
+       <!-- <div class="row">
+          
+          <div class="col-lg-12">
+            <div class="card">
+              <header class="card-header"><div class="card-title">项目信息</div></header>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>项目名称</th>
+                        <th>开始日期</th>
+                        <th>截止日期</th>
+                        <th>状态</th>
+                        <th>进度</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>设计新主题</td>
+                        <td>10/02/2019</td>
+                        <td>12/05/2019</td>
+                        <td><span class="badge badge-warning">待定</span></td>
+                        <td>
+                          <div class="progress progress-striped progress-sm">
+                            <div class="progress-bar progress-bar-warning" style="width: 45%;"></div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>网站重新设计</td>
+                        <td>01/03/2019</td>
+                       <td>12/04/2019</td>
+                        <td><span class="badge badge-success">进行中</span></td>
+                        <td>
+                          <div class="progress progress-striped progress-sm">
+                            <div class="progress-bar progress-bar-success" style="width: 30%;"></div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>模型设计</td>
+                         <td>10/10/2019</td>
+                         <td>12/11/2019</td>
+                        <td><span class="badge badge-warning">待定</span></td>
+                        <td>
+                          <div class="progress progress-striped progress-sm">
+                            <div class="progress-bar progress-bar-warning" style="width: 25%;"></div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>后台管理系统模板设计</td>
+                        <td>25/01/2019</td>
+                        <td>09/05/2019</td>
+                        <td><span class="badge badge-success">进行中</span></td>
+                        <td>
+                          <div class="progress progress-striped progress-sm">
+                            <div class="progress-bar progress-bar-success" style="width: 55%;"></div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>前端设计</td>
+                        <td>10/10/2019</td>
+                        <td>12/12/2019</td>
+                        <td><span class="badge badge-danger">未开始</span></td>
+                        <td>
+                          <div class="progress progress-striped progress-sm">
+                            <div class="progress-bar progress-bar-danger" style="width: 0%;"></div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>桌面软件测试</td>
+                        <td>10/01/2019</td>
+                        <td>29/03/2019</td>
+                        <td><span class="badge badge-success">进行中</span></td>
+                        <td>
+                          <div class="progress progress-striped progress-sm">
+                            <div class="progress-bar progress-bar-success" style="width: 75%;"></div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>APP改版开发</td>
+                        <td>25/02/2019</td>
+                        <td>12/05/2019</td>
+                        <td><span class="badge badge-danger">暂停</span></td>
+                        <td>
+                          <div class="progress progress-striped progress-sm">
+                            <div class="progress-bar progress-bar-danger" style="width: 15%;"></div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>8</td>
+                        <td>Logo设计</td>
+                        <td>10/02/2019</td>
+                        <td>01/03/2019</td>
+                        <td><span class="badge badge-warning">完成</span></td>
+                        <td>
+                          <div class="progress progress-striped progress-sm">
+                            <div class="progress-bar progress-bar-success" style="width: 100%;"></div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>-->
+        
+      </div>
+      
+{include("foot.html")}
+<script type="text/javascript" src="{$templates}/js/Chart.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+    var $dashChartBarsCnt  = jQuery( '.js-chartjs-bars' )[0].getContext( '2d' ),
+        $dashChartLinesCnt = jQuery( '.js-chartjs-lines' )[0].getContext( '2d' );
+    
+    var $dashChartBarsData = {
+		labels: [{$api_today[date]}],
+		datasets: [
+			{
+				label: '今日PV',
+            backgroundColor: "rgba(51,202,185,0.5)",
+            borderColor: "rgba(0,0,0,0)",
+            hoverBackgroundColor: "rgba(51,202,185,0.7)",
+            hoverBorderColor: "rgba(0,0,0,0)",
+            data: [{$pv_today[num]}]
+			},
+			{
+				label: '昨日PV',
+            backgroundColor: "rgba(243,245,246,0.8)",
+            borderColor: "rgba(0,0,0,0)",
+            hoverBackgroundColor: "rgba(238,239,240,1)",
+            hoverBorderColor: "rgba(0,0,0,0)",
+            data: [{$yesterday_today[num]}]
+			}
+		]
+	};
+    var $dashChartLinesData = {
+		labels: [{$api_today[date]}],
+		datasets: [
+			{
+				label: '调用数量',
+				data: [{$api_today[num]}],
+				borderColor: '#358ed7',
+				backgroundColor: 'rgba(53, 142, 215, 0.175)',
+                borderWidth: 1,
+                fill: false,
+                lineTension: 0.5
+			}
+		]
+	};
+    
+    new Chart($dashChartBarsCnt, {
+        type: 'bar',
+        data: $dashChartBarsData
+    });
+    
+    var myLineChart = new Chart($dashChartLinesCnt, {
+        type: 'line',
+        data: $dashChartLinesData,
+    });
+});
+</script>
+</body>
+</html>

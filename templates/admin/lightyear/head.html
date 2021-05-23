@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<title>{$title}-{$name}</title>
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" type="text/css" href="{$templates}/css/materialdesignicons.min.css">
+<link rel="stylesheet" type="text/css" href="{$templates}/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{$templates}/css/animate.min.css">
+<link rel="stylesheet" type="text/css" href="{$templates}/js/bootstrap-datepicker/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" type="text/css" href="{$templates}/css/style.min.css">
+</head>
+
+<body>
+<!--页面loading-->
+<div id="lyear-preloader" class="loading">
+  <div class="ctn-preloader">
+    <div class="round_spinner">
+      <div class="spinner"></div>
+      <img src="https://q.qlogo.cn/headimg_dl?dst_uin={$qq}&spec=100" alt="">
+    </div>
+  </div>
+</div>
+<!--页面loading end-->
+<div class="lyear-layout-web">
+  <div class="lyear-layout-container">
+    <!--左侧导航-->
+    <aside class="lyear-layout-sidebar">
+      
+      <!-- logo -->
+      <div id="logo" class="sidebar-header">
+        <a href="index.html"><img src="{$templates}/images/logo-sidebar.png" title="JieAdmin" alt="JieAdmin" /></a>
+      </div>
+      <div class="lyear-layout-sidebar-info lyear-scroll">
+        <nav class="sidebar-main">
+          <ul class="nav-drawer">
+            <li class="nav-item{if $tplindex==true} active{/if}"> <a href="index.html"><i class="mdi mdi-home"></i> <span>后台首页</span></a>
+            <li class="nav-item nav-item-has-subnav{if $setapi==true} active open{/if}">
+              <a href="javascript:void(0)"><i class="mdi mdi-pen"></i> <span>接口管理</span></a>
+              <ul class="nav nav-subnav">
+                <li{if $addapi==true} class="active"{/if}> <a href="./addapi.html">添加接口</a> </li>
+                <li{if $listapi==true} class="active"{/if}> <a href="./listapi.html">接口列表</a> </li>
+                <li{if $routeapi==true} class="active"{/if}> <a href="./routeapi.html">路径管理</a> </li>
+                <li{if $binding_parameter==true} class="active"{/if}> <a href="./binding_parameter.html">请求参数绑定</a> </li>
+                <li{if $return_parameter==true} class="active"{/if}> <a href="./return_parameter.html">返回参数绑定</a> </li>
+                <li{if $status_code_binding==true} class="active"{/if}> <a href="./status_code_binding.html">状态码绑定</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav{if $tplset==true} active open{/if}">
+              <a href="javascript:void(0)"><i class="mdi mdi-camera-switch"></i> <span>模板管理</span></a>
+              <ul class="nav nav-subnav">
+                <li{if $switch==true} class="active"{/if}> <a href="./tpl_switch.html">模板切换</a> </li>
+                <li{if $authority==true} class="active"{/if}> <a href="./tpl_authority.html">权限管理</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav{if $safeset==true} active open{/if}">
+              <a href="javascript:void(0)"><i class="mdi mdi-security"></i> <span>网站安全</span></a>
+              <ul class="nav nav-subnav">
+                <li{if $firset==true} class="active"{/if}> <a href="./firset.html">安全设置</a> </li>
+                <li{if $reptile==true} class="active"{/if}> <a href="./reptile.html">爬虫拦截</a> </li>
+                <li class="nav-item nav-item-has-subnav{if $weblog==true} open{/if}"> 
+                  <a href="#!">网站日志</a>
+                  <ul class="nav nav-subnav">
+                    <li{if $accesslog==true} class="active"{/if}> <a href="./list_accesslog.html">访问日志</a> </li>
+                    <!--<li> <a href="#!">拦截日志</a> </li>-->
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav{if $webset==true} active open{/if}">
+              <a href="javascript:void(0)"><i class="mdi mdi-television"></i> <span>系统设置</span></a>
+              <ul class="nav nav-subnav">
+                <li{if $config==true} class="active"{/if}> <a href="./config.html">网站设置</a> </li>
+                <li> <a href="./login.html?loginout=1">退出登录</a> </li>
+              </ul>
+            </li>
+            {if $admin_login==true}
+            <li class="nav-item {if $question==true} active open{/if}">
+              <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModalChange"><i class="mdi mdi mdi-comment-question-outline"></i><span>问题反馈</span></a>
+            </li>
+            {/if}
+          </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+          <p class="copyright">JieAdmin version：<a target="_blank" href="#">{$version}</a></p>
+        </div>
+      </div>
+      
+    </aside>
+    <!--End 左侧导航-->
+    
+    <!--头部信息-->
+    <header class="lyear-layout-header">
+      <nav class="navbar">
+      
+        <div class="navbar-left">
+          <div class="lyear-aside-toggler">
+            <span class="lyear-toggler-bar"></span>
+            <span class="lyear-toggler-bar"></span>
+            <span class="lyear-toggler-bar"></span>
+          </div>
+        </div>
+        <ul class="navbar-right d-flex align-items-center">
+        
+          <!--切换主题配色-->
+		  <li class="dropdown dropdown-skin">
+		    <span data-toggle="dropdown" class="icon-item"><i class="mdi mdi-palette"></i></span>
+			<ul class="dropdown-menu dropdown-menu-right" data-stopPropagation="true">
+              <li class="drop-title"><p>主题</p></li>
+              <li class="drop-skin-li clearfix">
+                <span class="inverse">
+                  <input type="radio" name="site_theme" value="default" id="site_theme_1" checked>
+                  <label for="site_theme_1"></label>
+                </span>
+                <span>
+                  <input type="radio" name="site_theme" value="dark" id="site_theme_2">
+                  <label for="site_theme_2"></label>
+                </span>
+                <span>
+                  <input type="radio" name="site_theme" value="translucent" id="site_theme_3">
+                  <label for="site_theme_3"></label>
+                </span>
+              </li>
+		    </ul>
+		  </li>
+          <!--切换主题配色-->
+          <li class="dropdown dropdown-profile">
+            <a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle">
+              <img class="img-avatar img-avatar-48 m-r-10" src="https://q.qlogo.cn/headimg_dl?dst_uin={$qq}&spec=100" alt="{$nick}" />
+              <span>{$nick}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+            {if $admin_login==true}
+              <li>
+                <a class="dropdown-item" href="./user.html"><i class="mdi mdi-account"></i>账号设置</a>
+              </li>
+              <li>
+              <li class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" href="./login.html?loginout=1"><i class="mdi mdi-logout-variant"></i> 退出登录</a>
+              </li>
+            </ul>
+          </li>
+            {else}
+            
+              <li>
+                <a class="dropdown-item" href="./login.html"><i class="mdi mdi-format-align-center"></i> 登录后台</a>
+              </li>
+               {/if}            
+        </ul>
+        
+      </nav>
+      
+    </header>
+    <!--End 头部信息-->
+                    
+                
+                <div class="modal fade" id="exampleModalChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalChangeLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id="exampleModalChangeTitle">问题反馈</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+ 温馨提示：反馈接口响应速度较慢，请谅解！<font color="red">请不要乱反馈，否则JieAdmin有权禁止您使用该程序</font>
+                        <form name="feedback">
+                          <div class="form-group">
+                            <label for="mail" class="col-form-label">联系邮箱:</label>
+                            <input type="mail" class="form-control" id="mail" name="mail" placeholder="请输入您的邮箱地址" value="{$mail}">
+                          </div>
+                          <div class="form-group">
+                            <label for="feedbackcontent" class="col-form-label">反馈内容:</label>
+                            <textarea class="form-control" id="feedbackcontent" name="feedbackcontent" rows="6" placeholder="请输入您遇到的问题"></textarea>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="feedbackbutton" onclick="submit_feedback();">提交</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    <!--页面主要内容-->
+    <main class="lyear-layout-content">
+      <div class="container-fluid p-t-15">

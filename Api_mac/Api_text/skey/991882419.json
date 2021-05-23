@@ -1,0 +1,15 @@
+{
+    "code": 1000,
+    "data": {
+        "uin": "991882419",
+        "skey": "@7OcRtNEUp",
+        "p_skey": {
+            "vip.qq.com": "GPnO8vLm4epK6RWVybuaBlMXJne1Z-6vVxB0FLIh48A_",
+            "qzone.qq.com": "m0*seRZwV8YiDQt5u9oVyFiHQEMG4bW-upzYXIuLOXY_"
+        },
+        "pt4_token": {
+            "vip.qq.com": "C6tP*llwHcCUQufJjjUAhr7*fVfP9lKeUsq*ijNDpY0_",
+            "qzone.qq.com": "5zBFlHwGpvPXF5bQHQyI0UcOxsPtKu8gB7QoMBUeXIo_"
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{var title=关于我们}
+{include("head.html")}
+ <div id="app_content"> 
+   <div class="mdui_grid_list">
+       <div class="mdui-container mdui-col">
+     <div class="mdui-card mdui-hoverable">
+     <div class="mdui-card-content">
+     <ul class="mdui-list">
+           <a class="mdui-list-item mdui-ripple" href="mqq://card/show_pslcard?src_type=internal&version=1&uin={$qq}&card_type=person&source=sharecard"">
+    <div class="mdui-list-item-avatar"><img src="https://q.qlogo.cn/headimg_dl?dst_uin={$qq}&spec=100"/></div>
+    <div class="mdui-list-item-content">
+      <div class="mdui-list-item-title">{$nick}</div>
+      <div class="mdui-list-item-text mdui-list-item-one-line">{$name}站长</div>
+   </div>
+   </a>
+   <a class="mdui-list-item mdui-ripple" href="javascript:sendMail('{$mail}');">
+    <i class="mdui-list-item-avatar mdui-icon material-icons mdui-color-theme-accent">email</i>
+    <div class="mdui-list-item-content">
+      <div class="mdui-list-item-title">联系邮箱</div>
+      <div class="mdui-list-item-text mdui-list-item-one-line">合作与支持</div>
+    </div>
+   </a>
+   <a class="mdui-list-item mdui-ripple" href="{$qun}">
+    <i class="mdui-list-item-avatar mdui-icon material-icons mdui-color-theme-accent">group</i>
+    <div class="mdui-list-item-content">
+      <div class="mdui-list-item-title">QQ交流群</div>
+      <div class="mdui-list-item-text mdui-list-item-one-line">交流与反馈</div>
+    </div>
+   </a>
+     </ul>
+    </div>
+   </div>
+  </div>
+
+{include("foot.html")}
+	</body>
+
+</html>

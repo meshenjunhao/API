@@ -1,0 +1,123 @@
+<!--emmmmm,二次修改获得了哞菇的许可，如果你要用记得留哞菇版权哦-->
+<!DOCTYPE html>
+<!-- by -->
+<html lang="en">
+ <head> 
+  <meta charset="UTF-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" /> 
+  <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1" /> 
+    <title>{$name} - {$subtitle}</title>
+    <meta name="description" content="{$description}">
+    <meta name="keywords" content="{$keywords}">
+  <link rel="stylesheet" type="text/css" href="{$templates}/css/h.css" /> 
+  <script src="{$templates}/js/jquery.min.js"></script> 
+  <script src="{$templates}/js/page.js"></script> 
+ </head> 
+ <body> 
+  <div class="background"> 
+  </div> 
+  <div class="main"> 
+   <div class="ch intro"> 
+    <div class="el"> 
+     <span>{$name}</span>
+     <span>快速</span>
+     <span>稳定</span>
+     <span>免费</span> 
+    </div> 
+    <div class="hello"> 
+     <!--<h1 id="slogan">人生思考…… </h1>--> 
+     <h1>
+      <div class="circle"> 
+     <span></span>
+     <span></span>
+     <span></span>
+      </div>{$name}</h1> 
+    </div> 
+   </div> 
+   <div class="ch about"> 
+    <div class="container"> 
+     <h2 class="chtitle">更好用的API，<span>就在</span>{$name}</h2> 
+     <div class="clear"> 
+   <div class="introduct">
+	<p>{$name}提供技术支持</p>
+	</div>
+      <ul class="skill"> 
+       <li> <p>可靠性</p> 
+        <div class="progress">
+         <div style="width:88%;"></div>
+        </div> </li> 
+       <li> <p>可调用性</p> 
+        <div class="progress">
+         <div style="width:95%;"></div>
+        </div> </li> 
+       <li> <p>速度</p> 
+        <div class="progress">
+         <div style="width:75%;"></div>
+        </div> </li> 
+       <li> <p>兼容性</p> 
+        <div class="progress">
+         <div style="width:95%;"></div>
+        </div> </li> 
+       <li> <p>安全性</p> 
+        <div class="progress">
+         <div style="width:82%;"></div>
+        </div> </li> 
+      </ul> 
+     </div> 
+    </div> 
+   </div> 
+   
+   <div class="find ch"> 
+    <div class="container links"> 
+     <h2 class="chtitle">{$name}</h2> 
+     <div class="clear"> 
+        {foreach $apilist($key,$value)}
+      <a href="/{@value[Y]}/{@value[m]}/{@value[d]}/{@value[appid]}.html" target="_blank">
+       <div class="item"> 
+        <div class="bg" style="background-color: {@value[randrgb]}"></div> 
+        <div class="inner"> 
+         <span>{@value[name]}</span> 
+        </div> 
+       </div></a> 
+        {/foreach}
+	
+     </div> 
+    </div> 
+   </div> 
+   <!--<div class="gate ch"> 
+    <div class="container links"> 
+     <h2 class="chtitle">由以下提供<span>赞助</span></h2> 
+     <div class="clear"> 
+      
+	  
+	  <a href="" target="_blank">
+       <div class="item"> 
+        <div class="avatar"> 
+         <img src="{$templates}/css/logo.png" /> 
+        </div> 
+        <div class="inner"> 
+         <h5>{$templates}</h5> 
+         <p>赞助了本站10元</p> 
+        </div> 
+       </div></a> 
+      
+	 
+	 </div> 
+    </div> 
+   </div> -->
+   
+   <div class="footer ch"> 
+   
+
+	<div class="container"> 
+     <p><script data-cfasync="false" src="{$templates}/js/email-decode.min.js"></script></p> 
+</p> 
+
+
+
+    </div> 
+   </div> 
+  </div> 
+
+ </body>
+</html>

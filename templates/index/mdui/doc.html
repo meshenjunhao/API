@@ -1,0 +1,343 @@
+{include("head.html")}
+
+      <div class="mdui-container"> 
+  	  <div id="api_document" class="doc-container mdui-p-a-2">
+	   <nav class="doc-toc mdui-text-color-theme"> 
+	    <ul> 
+	     <li><a data-scroll="" href="javascript:scrolCnt('rest_desc');">请求说明</a>
+	      <ul> 
+	       <li><a data-scroll="" href="javascript:scrolCnt('rest_url');">请求地址</a></li> 
+	       <li><a data-scroll="" href="javascript:scrolCnt('rest_demo');">请求示例</a></li> 
+	       <li><a data-scroll="" href="javascript:scrolCnt('retn_demo');">返回示例</a></li> 
+	      </ul></li> 
+	     <li><a data-scroll="" href="javascript:scrolCnt('parm_desc');">参数说明</a>
+	      <ul> 
+	       <li><a data-scroll="" href="javascript:scrolCnt('rest_parm');">请求参数</a></li> 
+	       <li><a data-scroll="" href="javascript:scrolCnt('retn_parm');">返回参数</a></li> 
+	      </ul></li> 
+	    </ul> 
+	   </nav> 
+	   <div class="doc-chapter"> 
+	    <div class="mdui-typo"> 
+	     <h2 class="doc-chapter-title doc-chapter-title-first mdui-text-color-theme" id="rest_desc">请求说明</h2> 
+	     <p id="rest_url"><b>请求地址&nbsp;&nbsp;{$http}{$api_data[url]}</b><button class="mdui-btn mdui-btn-icon mdui-btn-dense clipboard_copy" style="border-radius:100px" data-clipboard-text="{$http}{$api_data[url]}" onclick="showSnackbar('已复制');"><i class="mdui-icon material-icons" style="font-size:15px">content_copy</i></button></p> 
+	     <p><b>请求方式&nbsp;&nbsp;
+		 <kbd>{$api_data[request_format]}</kbd></b></p> 
+	     <p><b>返回格式&nbsp;&nbsp;</b><code>{$api_data[return_format]}</code></p> 
+	     <p id="retn_demo"><b>返回示例</b></p><pre class="doc-code mdui-shadow-1"><code>{$api_data[contents]}</code></pre><p></p> 
+		<p>更新时间&nbsp;&nbsp;{$time}</p> 
+	    </div> 
+	    <div class="mdui-typo" id="parm_desc"> 
+	     <h2 class="doc-chapter-title mdui-text-color-theme" id="rest_parm">请求参数</h2> 
+		 	     <div class="mdui-table-fluid mdui-shadow-1"> 
+	      <table class="mdui-table mdui-table-hoverable"> 
+	       <thead>
+	        <tr> 
+	         <th>参数名称</th> 
+	         <th>是否必需</th> 
+	         <th>参数类型</th> 
+	         <th>参数说明</th> 
+	        </tr>
+	       </thead> 
+	       <tbody>
+                       {foreach $request_parameter($key,$value)}
+                        <tr><td><code>{@value[name]}</code></td><td>{@value[required]}</td><td><code>{@value[type]}</code></td><td>{@value[explanation]}</td></tr>                    
+                       {/foreach}
+		        	       </tbody> 
+	      </table> 
+	     </div> 
+		 		 	     <h2 class="doc-chapter-title mdui-text-color-theme" id="retn_parm">返回参数</h2> 
+	     <div class="mdui-table-fluid mdui-shadow-1"> 
+	      <table class="mdui-table mdui-table-hoverable"> 
+	       <thead>
+	        <tr> 
+	         <th>参数名称</th> 
+	         <th>参数类型</th> 
+	         <th>参数说明</th> 
+	        </tr>
+	       </thead> 
+	       <tbody>
+                       {foreach $return_parameter($key,$value)}
+                        <tr><td><code>{@value[name]}</code></td><td><code>{@value[type]}</code></td><td>{@value[explanation]}</td></tr>                    
+                       {/foreach}
+					       </tbody> 
+	      </table> 
+	     </div> 
+		 	    </div> 
+	   </div>
+	  </div>
+	  	 <div id="api_status_code" class="doc-container mdui-p-a-2">
+	   <div class="mdui-typo"> 
+	    	    <h2 class="doc-chapter-title mdui-text-color-theme" id="status_code">接口状态</h2> 
+	   <div class="mdui-table-fluid mdui-shadow-1"> 
+	      <table class="mdui-table mdui-table-hoverable"> 
+	       <thead>
+	        <tr> 
+	         <th>状态码</th> 
+	         <th>状态说明</th> 
+	        </tr>
+	       </thead> 
+	       <tbody>
+                       {foreach $status_code_binding($key,$value)}
+                        <tr><td><code>{@value[name]}</code></td><td><code>{@value[type]}</code></td><td>{@value[explanation]}</td></tr>                    
+                       {/foreach}
+		        	       </tbody> 
+	      </table> 
+	     </div> 
+	    </div>
+	    <br>
+	    <br>
+	    <br>
+	   </div>
+	      <div id="api_example" class="doc-container mdui-p-a-2">
+   <nav class="doc-toc mdui-text-color-theme"> 
+    <ul> 
+     <li><a data-scroll="" href="javascript:scrolTop('php');">PHP</a>
+      <ul> 
+       <li><a data-scroll="" href="javascript:scrolTop('php_get');">get</a></li> 
+       <li><a data-scroll="" href="javascript:scrolTop('php_post');">post</a></li> 
+      </ul></li> 
+     <li><a data-scroll="" href="javascript:scrolTop('javascript');">JavaScript</a>
+      <ul> 
+       <li><a data-scroll="" href="javascript:scrolTop('javascript_get');">get</a></li> 
+       <li><a data-scroll="" href="javascript:scrolTop('javascript_post');">post</a></li> 
+      </ul></li> 
+      <li><a data-scroll="" href="javascript:scrolTop('java');">JAVA</a>
+      <ul> 
+       <li><a data-scroll="" href="javascript:scrolTop('java_get');">get</a></li> 
+       <li><a data-scroll="" href="javascript:scrolTop('java_post');">post</a></li> 
+      </ul></li> 
+     <li><a data-scroll="" href="javascript:scrolTop('lua');">Lua</a>
+      <ul> 
+       <li><a data-scroll="" href="javascript:scrolTop('lua_get');">get</a></li> 
+       <li><a data-scroll="" href="javascript:scrolTop('lua_post');">post</a></li> 
+      </ul></li> 
+      <li><a data-scroll="" href="javascript:scrolTop('tiecode');">结绳</a>
+      <ul> 
+       <li><a data-scroll="" href="javascript:scrolTop('tiecode_get');">get</a></li> 
+       <li><a data-scroll="" href="javascript:scrolTop('tiecode_post');">post</a></li> 
+      </ul></li> 
+     <li><a data-scroll="" href="javascript:scrolTop('iapp');">iAPP</a>
+      <ul> 
+       <li><a data-scroll="" href="javascript:scrolTop('iapp_get');">get</a></li> 
+       <li><a data-scroll="" href="javascript:scrolTop('iapp_post');">post</a></li> 
+      </ul></li> 
+    </ul> 
+   </nav> 
+   <br>
+    <br>
+    <br>
+   <div class="mdui-typo"> 
+   <div id="php" class="mdui-chip">
+     <img class="mdui-chip-icon" src="{$templates}/assets/img/lang/php.png"><span class="mdui-chip-title">PHP</span>
+   </div><br><br>
+   <p id="php_get">GET方法</p>
+   <pre class="doc-code mdui-shadow-1"><code>$url = '{$http}{$api_data[url]}';
+$data = '?{$request_parameter_splicing}';
+$get = $url.$data;
+$result = file_get_contents($get);
+if ($result) {
+  //成功
+  echo $result;
+} else {
+  //失败
+}</code></pre>
+<p id="php_post">POST方法</p>
+   <pre class="doc-code mdui-shadow-1"><code>$url = '{$http}{$api_data[url]}';
+$data = array(<br>&nbsp;&nbsp;'msg' =&gt; '汽车',<br>);<br>$data = http_build_query($data);
+$option = array('http'=&gt;array('method'=&gt;'POST','content'=&gt;$data));
+$context = stream_context_create($option);
+$result = file_get_contents($url,false,$context);
+if ($result) {
+  //成功
+  echo $result;
+} else {
+  //失败
+}</code></pre><br>
+<div id="javascript" class="mdui-chip">
+     <img class="mdui-chip-icon" src="{$templates}/assets/img/lang/js.png"><span class="mdui-chip-title">JavaScript</span>
+   </div><br><br>
+<p id="javascript_get">GET方法</p>
+   <pre class="doc-code mdui-shadow-1"><code>var url = "{$http}{$api_data[url]}"
+var data = "?{$request_parameter_splicing}"
+var xhrGet = new XMLHttpRequest();
+xhrGet.open('GET', url + data, true);
+xhrGet.send();
+xhrGet.onreadystatechange = function() {
+    if (xhrGet.readyState == 4 &amp;&amp; xhrGet.status == 200) {
+        //成功
+        var result = xhrGet.responseText;
+        console.log(result);
+    } else {
+        //失败
+    }
+};</code></pre>
+<p id="javascript_post">POST方法</p>
+   <pre class="doc-code mdui-shadow-1"><code>var url = "{$http}{$api_data[url]}"
+var data = "{$request_parameter_splicing}"
+var xhrPost = new XMLHttpRequest();
+xhrPost.open('POST', url, true);
+xhrPost.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhrPost.send(data);
+xhrPost.onreadystatechange = function() {
+    if (xhrPost.readyState == 4 &amp;&amp; xhrPost.status == 200) {
+        //成功
+        var result = xhrPost.responseText;
+        console.log(result);
+    } else {
+        //失败
+    }
+};</code></pre><br>
+<div id="java" class="mdui-chip">
+     <img class="mdui-chip-icon" src="{$templates}/assets/img/lang/java.png"><span class="mdui-chip-title">JAVA</span>
+   </div><br><br>
+   <p id="java_get">GET方法</p>
+   <pre class="doc-code mdui-shadow-1"><code>new Thread(){
+  public void run() {
+    String path = "{$http}{$api_data[url]}";
+    String data = "?{$request_parameter_splicing}";      
+     try {
+        URL url = new URL(path + data);
+        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        connection.setRequestMethod("GET");
+        int code = connection.getResponseCode();
+        if (code == 200) {
+          //成功
+          InputStreamReader isr = new InputStreamReader(connection.getInputStream());
+          BufferedReader bufferedreader = new BufferedReader(isr);
+          String string;
+          StringBuilder stringbuilder = new StringBuilder();
+            while ((string = bufferedreader.readLine()) != null) {
+              stringbuilder.append(string);
+            }
+          final String result = stringbuilder.toString();
+          System.out.println(result);
+        } else {
+          //失败
+        }
+	} catch (MalformedURLException e) {
+        e.printStackTrace();
+	} catch (IOException e) {
+        e.printStackTrace();
+	}
+}}.start();</code></pre>
+<p id="java_post">POST方法</p>
+   <pre class="doc-code mdui-shadow-1"><code>new Thread(){
+  public void run() {
+    String path = "{$http}{$api_data[url]}";
+    String data = "{$request_parameter_splicing}";
+      try {
+        URL url = new URL(path);
+        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        connection.setRequestMethod("POST");          
+        connection.setDoOutput(true);
+        connection.getOutputStream().write(data.getBytes());
+        int code = connection.getResponseCode();
+        if (code == 200) {
+          //成功
+          InputStreamReader isr = new InputStreamReader(connection.getInputStream());
+          BufferedReader bufferedreader = new BufferedReader(isr);
+          String string;
+          StringBuilder stringbuilder = new StringBuilder();
+            while ((string = bufferedreader.readLine()) != null) {
+            stringbuilder.append(string);
+            }
+          final String result = stringbuilder.toString();
+          System.out.println(result);
+        } else {
+          //失败
+        }
+	} catch (MalformedURLException e) {
+        e.printStackTrace();
+	} catch (IOException e) {
+        e.printStackTrace();
+	}
+}}.start();</code></pre><br>
+<div id="lua" class="mdui-chip">
+     <img class="mdui-chip-icon" src="{$templates}/assets/img/lang/lua.png"><span class="mdui-chip-title">Lua</span>
+   </div><br><br>
+   <p id="lua_get">GET方法</p>
+   <pre class="doc-code mdui-shadow-1"><code>url="{$http}{$api_data[url]}"
+data=url.."?{$request_parameter_splicing}"
+Http.get(data,function(code,content,data)
+  if code==200 then
+    --成功
+    print(content)
+   else
+    --失败
+  end
+end)</code></pre>
+<p id="lua_post">POST方法</p> 
+   <pre class="doc-code mdui-shadow-1"><code>url="{$http}{$api_data[url]}"
+data="{$request_parameter_splicing}"
+Http.post(url,data,function(code,content,data)
+  if code==200 then
+    --成功
+    print(content)
+   else
+    --失败
+  end
+end)</code></pre><br>
+<div id="tiecode" class="mdui-chip">
+     <img class="mdui-chip-icon" src="{$templates}/assets/img/app/tiecode.png"><span class="mdui-chip-title">结绳</span>
+   </div><br><br>
+   <p id="tiecode_get">GET方法</p>
+   <pre class="doc-code mdui-shadow-1"><code>变量 网络GET操作 为 网络操作 = 创建 网络操作()
+   变量 GET数据 为 文本型 = "?{$request_parameter_splicing}"   
+   网络GET操作.取网页源码("{$http}{$api_data[url]}" + GET数据)
+   事件 网络GET操作:取网页源码结束(结果 为 文本型,cookie 为 文本型)
+      //成功
+      调试输出(结果)
+   结束 事件
+   事件 网络GET操作:取网页源码失败(响应码 为 文本型)
+      //失败
+   结束 事件</code></pre>
+<p id="tiecode_post">POST方法</p> 
+   <pre class="doc-code mdui-shadow-1"><code>变量 网络POST操作 为 网络操作 = 创建 网络操作()
+   变量 POST数据 为 文本型 = "{$request_parameter_splicing}"
+   网络POST操作.发送数据("{$http}{$api_data[url]}",POST数据)
+   事件 网络POST操作:发送数据结束(结果 为 文本型,cookie 为 文本型)
+      //成功
+      调试输出(结果)
+   结束 事件
+   事件 网络POST操作:发送数据失败(响应码 为 文本型)
+      //失败
+   结束 事件</code></pre>   <br>
+<div id="iapp" class="mdui-chip">
+     <img class="mdui-chip-icon" src="{$templates}/assets/img/app/iapp.png"><span class="mdui-chip-title">iAPP</span>
+   </div><br><br>
+   <p id="iapp_get">GET方法</p>
+   <pre class="doc-code mdui-shadow-1"><code>s url="{$http}{$api_data[url]}"
+s data="?{$request_parameter_splicing}"
+ss(url+data,get)
+t(){
+  hs(get,result)
+  f(result!=null){
+    //成功
+    syso(result)
+  }else{
+    //失败
+  }
+}</code></pre>
+<p id="iapp_post">POST方法</p> 
+   <pre class="doc-code mdui-shadow-1"><code>s url="{$http}{$api_data[url]}"
+s data="{$request_parameter_splicing}"
+t(){
+  hs(url,data,"utf-8",result)
+  f(result!=null){
+    //成功
+    syso(result)
+  }else{
+    //失败
+  }
+}</code></pre>   </div>
+   <br>
+   <br>
+   <br>
+   </div>
+    </div>
+        
+  
+{include("foot.html")}
+
+</body>

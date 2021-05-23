@@ -1,0 +1,954 @@
+<html><head><style id="ace-monokai">.ace-monokai .ace_gutter {background: #2F3129;color: #8F908A}.ace-monokai .ace_print-margin {width: 1px;background: #555651}.ace-monokai {background-color: #272822;color: #F8F8F2}.ace-monokai .ace_cursor {color: #F8F8F0}.ace-monokai .ace_marker-layer .ace_selection {background: #49483E}.ace-monokai.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px #272822;}.ace-monokai .ace_marker-layer .ace_step {background: rgb(102, 82, 0)}.ace-monokai .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid #49483E}.ace-monokai .ace_marker-layer .ace_active-line {background: #202020}.ace-monokai .ace_gutter-active-line {background-color: #272727}.ace-monokai .ace_marker-layer .ace_selected-word {border: 1px solid #49483E}.ace-monokai .ace_invisible {color: #52524d}.ace-monokai .ace_entity.ace_name.ace_tag,.ace-monokai .ace_keyword,.ace-monokai .ace_meta.ace_tag,.ace-monokai .ace_storage {color: #F92672}.ace-monokai .ace_punctuation,.ace-monokai .ace_punctuation.ace_tag {color: #fff}.ace-monokai .ace_constant.ace_character,.ace-monokai .ace_constant.ace_language,.ace-monokai .ace_constant.ace_numeric,.ace-monokai .ace_constant.ace_other {color: #AE81FF}.ace-monokai .ace_invalid {color: #F8F8F0;background-color: #F92672}.ace-monokai .ace_invalid.ace_deprecated {color: #F8F8F0;background-color: #AE81FF}.ace-monokai .ace_support.ace_constant,.ace-monokai .ace_support.ace_function {color: #66D9EF}.ace-monokai .ace_fold {background-color: #A6E22E;border-color: #F8F8F2}.ace-monokai .ace_storage.ace_type,.ace-monokai .ace_support.ace_class,.ace-monokai .ace_support.ace_type {font-style: italic;color: #66D9EF}.ace-monokai .ace_entity.ace_name.ace_function,.ace-monokai .ace_entity.ace_other,.ace-monokai .ace_entity.ace_other.ace_attribute-name,.ace-monokai .ace_variable {color: #A6E22E}.ace-monokai .ace_variable.ace_parameter {font-style: italic;color: #FD971F}.ace-monokai .ace_string {color: #E6DB74}.ace-monokai .ace_comment {color: #75715E}.ace-monokai .ace_indent-guide {background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWPQ0FD0ZXBzd/wPAAjVAoxeSgNeAAAAAElFTkSuQmCC) right repeat-y}
+/*# sourceURL=ace/css/ace-monokai */</style><style id="autocompletion.css">.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {    background-color: #CAD6FA;    z-index: 1;}.ace_dark.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {    background-color: #3a674e;}.ace_editor.ace_autocomplete .ace_line-hover {    border: 1px solid #abbffe;    margin-top: -1px;    background: rgba(233,233,253,0.4);    position: absolute;    z-index: 2;}.ace_dark.ace_editor.ace_autocomplete .ace_line-hover {    border: 1px solid rgba(109, 150, 13, 0.8);    background: rgba(58, 103, 78, 0.62);}.ace_completion-meta {    opacity: 0.5;    margin: 0.9em;}.ace_completion-message {    color: blue;}.ace_editor.ace_autocomplete .ace_completion-highlight{    color: #2d69c7;}.ace_dark.ace_editor.ace_autocomplete .ace_completion-highlight{    color: #93ca12;}.ace_editor.ace_autocomplete {    width: 300px;    z-index: 200000;    border: 1px lightgray solid;    position: fixed;    box-shadow: 2px 3px 5px rgba(0,0,0,.2);    line-height: 1.4;    background: #fefefe;    color: #111;}.ace_dark.ace_editor.ace_autocomplete {    border: 1px #484747 solid;    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.51);    line-height: 1.4;    background: #25282c;    color: #c1c1c1;}
+/*# sourceURL=ace/css/autocompletion.css */</style><style>.ace_snippet-marker {    -moz-box-sizing: border-box;    box-sizing: border-box;    background: rgba(194, 193, 208, 0.09);    border: 1px dotted rgba(211, 208, 235, 0.62);    position: absolute;}</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-tm */</style><style id="ace_editor.css">.ace_br1 {border-top-left-radius    : 3px;}.ace_br2 {border-top-right-radius   : 3px;}.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}.ace_br4 {border-bottom-right-radius: 3px;}.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}.ace_br8 {border-bottom-left-radius : 3px;}.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}.ace_editor {position: relative;overflow: hidden;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;text-align: left;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;box-sizing: border-box;min-width: 100%;contain: style size layout;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;contain: style size layout;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {position: absolute;top: 0;left: 0;right: 0;padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {contain: strict;position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;contain: strict;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;white-space: pre!important;}.ace_text-input.ace_composition {background: transparent;color: inherit;z-index: 1000;opacity: 1;}.ace_composition_placeholder { color: transparent }.ace_composition_marker { border-bottom: 1px solid;position: absolute;border-radius: 0;margin-top: 1px;}[ace_nocontext=true] {transform: none!important;filter: none!important;perspective: none!important;clip-path: none!important;mask : none!important;contain: none!important;perspective: none!important;mix-blend-mode: initial!important;z-index: auto;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;height: 1000000px;contain: style size layout;}.ace_text-layer {font: inherit !important;position: absolute;height: 1000000px;width: 1000000px;contain: style size layout;}.ace_text-layer > .ace_line, .ace_text-layer > .ace_line_group {contain: style size layout;position: absolute;top: 0;left: 0;right: 0;}.ace_hidpi .ace_text-layer,.ace_hidpi .ace_gutter-layer,.ace_hidpi .ace_content,.ace_hidpi .ace_gutter {contain: strict;will-change: transform;}.ace_hidpi .ace_text-layer > .ace_line, .ace_hidpi .ace_text-layer > .ace_line_group {contain: strict;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;box-sizing: border-box;border-left: 2px solid;transform: translatez(0);}.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_smooth-blinking .ace_cursor {transition: opacity 0.18s;}.ace_animate-blinking .ace_cursor {animation-duration: 1000ms;animation-timing-function: step-end;animation-name: blink-ace-animate;animation-iteration-count: infinite;}.ace_animate-blinking.ace_smooth-blinking .ace_cursor {animation-duration: 1000ms;animation-timing-function: ease-in-out;animation-name: blink-ace-animate-smooth;}@keyframes blink-ace-animate {from, to { opacity: 1; }60% { opacity: 0; }}@keyframes blink-ace-animate-smooth {from, to { opacity: 1; }45% { opacity: 1; }60% { opacity: 0; }85% { opacity: 0; }}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;box-sizing: border-box;}.ace_line .ace_fold {box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_inline_button {border: 1px solid lightgray;display: inline-block;margin: -1px 8px;padding: 0 5px;pointer-events: auto;cursor: pointer;}.ace_inline_button:hover {border-color: gray;background: rgba(200,200,200,0.2);display: inline-block;pointer-events: auto;}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}
+/*# sourceURL=ace/css/ace_editor.css */</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referer" content="never">
+    <meta name="renderer" content="webkit">
+    <title>宝塔Linux面板</title>
+    <link rel="shortcut icon" href="http://47.101.183.91:8476/static/favicon.ico" type="image/x-icon">
+    <link href="http://47.101.183.91:8476/static/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://47.101.183.91:8476/static/css/site.css?20200527=7.3.0" rel="stylesheet">
+    <link href="http://47.101.183.91:8476/static/codemirror/lib/codemirror.css?20200527=7.3.0" rel="stylesheet">
+    <!--[if lte IE 9]>
+    	<script src="http://47.101.183.91:8476/static/js/requestAnimationFrame.js"></script>
+    <![endif]-->
+    <style>
+		.top-tips {
+			height: 50px;
+			width: 100%;
+			color: red;
+			position: fixed;
+			top: 0;
+			z-index: 999;
+			background-color: white;
+			text-align: center;
+			line-height: 50px;
+			font-size: 20px;
+			border-bottom: 1px solid #f0f0f0;
+			font-weight: bold;
+			display: none;
+		}
+		.contextmenu {
+			position: absolute;
+			width: 120px;
+			background: #FFFFFF;
+			border-radius: 5px;
+			overflow: hidden;
+			z-index: 99999999;
+		}
+		.contextmenu li {
+			border-left: 3px solid transparent;
+			transition: ease 0.3s;
+		}
+		.contextmenu li:hover {
+			background: #707070;
+			border-left: 3px solid #333;
+		}
+		.contextmenu li a {
+			display: block;
+			padding: 5px 10px;
+			color: #000000;
+			text-decoration: none;
+			transition: ease 0.3s;
+			cursor:default;
+		}
+		.contextmenu li:hover a {
+			color: #fff;
+		}
+    </style>
+<link rel="stylesheet" href="http://47.101.183.91:8476/static/layer/skin/default/layer.css?v=3.0.11110" id="layuicss-skinlayercss"><link rel="stylesheet" href="http://47.101.183.91:8476/static/laydate/theme/default/laydate.css?v=5.0.9" id="layuicss-laydate"><script src="http://47.101.183.91:8476/static/ace/theme-monokai.js"></script><script src="http://47.101.183.91:8476/static/ace/mode-php.js"></script><script src="http://47.101.183.91:8476/static/ace/snippets/text.js"></script><script src="http://47.101.183.91:8476/static/ace/keybinding-sublime.js"></script><script src="http://47.101.183.91:8476/static/ace/snippets/php.js"></script></head>
+<body style="">
+    <div class="bt-warp bge6">
+        <div class="top-tips">当前IE浏览器版本过低,部分功能无法展示,请更换至其他浏览器，国产浏览器请使用极速模式！</div>
+        <a style="display:none;" id="request_token_head" token="4KoTeMKi6Fj5lPHWT84OENVFIPvrmjIlELCnBRvWSITdqGb1"></a>
+        <div id="container" class="container-fluid">
+            <div class="sidebar-scroll">
+                <div class="sidebar-auto">
+                    <div id="task" class="task cw" onclick="messagebox()">0</div>
+                    <h3 class="mypcip"><span class="f14 cw">47.101.183.91</span></h3>
+                    <ul class="menu">
+                        
+                            
+                            <li id="memuA"> <a class="menu_home" href="/">首页</a></li>
+                            
+                        
+                            
+                            <li id="memuAsite"> <a class="menu_web" href="/site">网站</a></li>
+                            
+                        
+                            
+                            <li id="memuAftp"> <a class="menu_ftp" href="/ftp">FTP</a></li>
+                            
+                        
+                            
+                            <li id="memuAdatabase"> <a class="menu_data" href="/database">数据库</a></li>
+                            
+                        
+                            
+                            <li id="memuAcontrol"> <a class="menu_control" href="/control">监控</a></li>
+                            
+                        
+                            
+                            <li id="memuAfirewall"> <a class="menu_firewall" href="/firewall">安全</a></li>
+                            
+                        
+                            
+                            <li id="memuAfiles" class="current"> <a class="menu_folder" href="/files">文件</a></li>
+                            
+                        
+                            
+                            <li id="memuAcrontab"> <a class="menu_day" href="/crontab">计划任务</a></li>
+                            
+                        
+                            
+                            <li id="memuAsoft"> <a class="menu_soft" href="/soft">软件商店</a></li>
+                            
+                        
+                            
+                            <li id="memuAconfig"> <a class="menu_set" href="/config">面板设置</a></li>
+                            
+                        
+                            
+                            <li id="http://bbs.ccspump.com/"> <a class="menu_control" href="http://bbs.ccspump.com/">空白论坛</a></li>
+                            
+                        
+                            
+                            <li id="dologin"> <a class="menu_exit" href="/login?dologin=True">退出</a></li>
+                            
+                        
+                    </ul>
+                    <div id="newbtpc"><h3 class="mypcip mypcipnew" style="opacity:.6" data-url="http://173.82.181.181:8476" data-user="kenai" data-pw="1314520s"><span class="f14 cw">美国MC</span><em class="btedit" onclick="bindBTPanel(0,'c','美国MC','1','http://173.82.181.181:8476','kenai','1314520s')"></em></h3></div>
+                    <div class="btpc-plus" onclick="bindBTPanel(0,'b')">+</div>
+                </div>
+            </div>
+            <button style="display: none;" id="bt_copys" class="bt_copy" data-clipboard-text=""></button>
+            <a style="display: none;" id="defaultPath">/www/wwwroot</a>
+            
+<div class="main-content" style="min-height: 577px;">
+    <div class="container-fluid" style="padding-bottom:50px">
+        <div class="file-box bgw mtb15">
+            <div id="tipTools" class="plr15" style="width: 629px;">
+                <div class="ptb15">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <button id="backBtn" class="backBtn btn btn-default btn-sm glyphicon glyphicon-arrow-left pull-left" title="后退" onclick="BackDir()"></button>
+                            <button class="backBtn refreshBtn btn btn-default btn-sm glyphicon glyphicon-refresh pull-right" title="刷新" style="margin-left:-1px;"></button>
+                            <span id="DirPathPlace" class="pull-left"><input id="fileInputPath" type="text" style="width: 302px;"></span>
+                            <span id="PathPlaceBtn" class="pull-left" style="width: 292px;"><div style="width:1200px;height:26px"><ul style="left: -268px;"><li><a title="/">根目录</a></li><li><a title="/www/">www</a></li><li><a title="/www/wwwroot/">wwwroot</a></li><li><a title="/www/wwwroot/ai.kenaisq.top/">ai.kenaisq.top</a></li><li><a title="/www/wwwroot/ai.kenaisq.top/API/">API</a></li><li><a title="/www/wwwroot/ai.kenaisq.top/API/data/">data</a></li><li><a title="/www/wwwroot/ai.kenaisq.top/API/data/web/">web</a></li><li><a title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/">Api</a></li></ul></div></span>
+                        </div>
+                        <div class="pull-left mlr15" style="line-height:26px"><span id="DirInfo">(共2个目录与11个文件,大小:<font id="pathSize"><a class="btlink ml5" onclick="GetPathSize()">获取</a></font>)</span></div>
+                        <div class="search pull-right" style="position: absolute; top: 6px; right: 5px;">
+                            <div class="search_box">
+                                <input id="search_all" type="checkbox">
+                                <label for="search_all">包含子目录</label>
+                            </div>
+                            <form target="hid" onsubmit="GetFiles(1)">
+                                <input type="text" id="SearchValue" class="ser-text pull-left" placeholder="">
+                                <button type="button" class="ser-sub pull-left" onclick="GetFiles(1)"></button>
+                            </form>
+                            <iframe name="hid" id="hid" style="display:none"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix ptb10">
+                    <button class="btn btn-default btn-sm pull-left" onclick="UploadFiles()">上传</button>
+                    <button class="btn btn-default btn-sm pull-left" onclick="DownloadFile()" title="下载文件到服务器" style="margin:0 5px">远程下载</button>
+                    <span id="BarTools"><div class="btn-group">						<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">						新建 <span class="caret"></span>						</button>						<ul class="dropdown-menu">						<li><a href="javascript:CreateFile(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api');">新建空白文件</a></li>						<li><a href="javascript:CreateDir(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api');">新建目录</a></li>						</ul>						</div> <button onclick="javascript:BackDir();" class="btn btn-default btn-sm glyphicon glyphicon-arrow-left" title="返回上一级"></button> <button onclick="javascript:GetFiles('/www/wwwroot/ai.kenaisq.top/API/data/web/Api');" class="btn btn-default btn-sm glyphicon glyphicon-refresh" title="刷新"></button> <button onclick="web_shell()" title="终端" type="button" class="btn btn-default btn-sm"><em class="ico-cmd"></em></button><button onclick="get_download_url_list()" type="button" class="btn btn-default btn-sm ml5">分享列表</button><div class="btn-group">						<button style="margin-left: 5px;" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">收藏夹 <span class="caret"></span>						</button>						<ul class="dropdown-menu"><li style="text-align: center;"><a href="javascript: ;" onclick="set_file_store('/www/wwwroot/ai.kenaisq.top/API/data/web/Api')">管理收藏夹</a></li></ul></div></span>
+                    <span id="Batch" style="background-color:#fff;position:absolute;right:190px;z-index:10"></span>
+                    <span id="comlist" class="comlist" style="width: 99px; height: 34px; overflow: auto;"><span onclick="GetFiles('/')"><span class="glyphicon glyphicon-hdd"></span>&nbsp;根目录(9.8G)</span><span id="recycle_bin" onclick="Recycle_bin('open')" title="回收站" style="position: absolute; border-color: #ccc; right: 77px;"><span class="glyphicon glyphicon-trash"></span>&nbsp;回收站</span></span>
+                    <div class="btn-group btn-group-sm pull-right" style="margin-right:5px;">
+                        <button id="set_icon" title="图标排列" type="button" class="btn btn-default">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </button>
+                        <button id="set_list" title="列表排列" type="button" class="btn btn-default active">
+                            <i class="glyphicon glyphicon-th-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="divtable pd15" id="fileCon"><div class="newTable"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="table table-hover">                              <thead>                                  <tr>                                      <th width="30"><input type="checkbox" id="setBox" placeholder=""></th>                                      <th width="113"><a style="cursor: pointer;" onclick="GetFiles(1,'name')">文件名<span data-id="status" class="glyphicon glyphicon-triangle-bottom" style="margin-left:5px;color:#bbb"></span></a></th>                                      <th width="48"><a style="cursor: pointer;" onclick="GetFiles(1,'size')">大小</a></th>                                      <th width="83"><a style="cursor: pointer;" onclick="GetFiles(1,'mtime')">修改时间</a></th>                                      <th width="38"><a style="cursor: pointer;" onclick="GetFiles(1,'accept')">权限</a></th>                                      <th width="45"><a style="cursor: pointer;" onclick="GetFiles(1,'user')">所有者</a></th>                                      <th style="text-align: right;" width="231">操作</th>									  <th width="10" style="padding: 0px;"></th>                                  </tr>                              </thead>                              </table>							</div>							<div class="newTableShadow"></div>            				<div class="oldTable" style="overflow: auto; height: 308px; margin-top: 0px;"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="table table-hover" style="margin-top: -40px;">							<thead>								<tr>									<th width="30"><input type="checkbox" id="setBox" placeholder=""></th>									<th><a style="cursor: pointer;" class="btlink" onclick="GetFiles(1,'name')">文件名<span data-id="status" class="glyphicon glyphicon-triangle-bottom" style="margin-left:5px;color:#bbb"></span></a></th>									<th><a style="cursor: pointer;" class="btlink" onclick="GetFiles(1,'size')">大小</a></th>									<th><a style="cursor: pointer;" class="btlink" onclick="GetFiles(1,'mtime')">修改时间</a></th>									<th><a style="cursor: pointer;" class="btlink" onclick="GetFiles(1,'accept')">权限</a></th>									<th><a style="cursor: pointer;" class="btlink" onclick="GetFiles(1,'user')">所有者</a></th>									<th style="text-align: right;" width="330">操作</th>								</tr>							</thead>							<tbody id="filesBody" class="list-list ui-selectable"><tr class="folderBoxTr ui-selectee" fileshare="0" data-composer="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data" filetype="dir">						<td><input type="checkbox" name="id" value="data"></td>						<td class="column-name"><span class="cursor" onclick="GetFiles('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data')"><span class="ico ico-folder"></span><a class="text" title="data">data</a></span></td>						<td><a class="btlink -www-wwwroot-ai-kenaisq-top-API-data-web-Api-data" onclick="get_path_size('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data')">点击计算</a></td>						<td>2021/02/11 13:15:46</td>						<td>755</td>						<td>www</td>						<td class="editmenu"><span>						<a class="btlink" href="javascript:;" onclick="webshell_dir('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data')">目录查杀</a> | 						<a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data')">剪切</a> | 						<a class="btlink" href="javascript:ReName(0,'data');">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteDir('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data')">删除</a></span>					</td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-composer="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error" filetype="dir">						<td><input type="checkbox" name="id" value="error"></td>						<td class="column-name"><span class="cursor" onclick="GetFiles('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error')"><span class="ico ico-folder"></span><a class="text" title="error">error</a></span></td>						<td><a class="btlink -www-wwwroot-ai-kenaisq-top-API-data-web-Api-error" onclick="get_path_size('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error')">点击计算</a></td>						<td>2021/02/25 00:14:04</td>						<td>755</td>						<td>www</td>						<td class="editmenu"><span>						<a class="btlink" href="javascript:;" onclick="webshell_dir('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error')">目录查杀</a> | 						<a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error')">剪切</a> | 						<a class="btlink" href="javascript:ReName(0,'error');">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteDir('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error')">删除</a></span>					</td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak" filetype="Api.php.bak"><td><input type="checkbox" name="id" value="Api.php.bak"></td>						<td class="column-name"><span class="ico ico-file"></span><a class="text" title="Api.php.bak">Api.php.bak</a></td>						<td>12.34 KB</td>						<td>2021/02/25 00:46:41</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'Api.php.bak')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak',12634)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php" filetype="Api.php"><td><input type="checkbox" name="id" value="Api.php"></td>						<td class="column-name"><span class="ico ico-php"></span><a class="text" title="Api.php">Api.php</a></td>						<td>12.53 KB</td>						<td>2021/02/25 13:30:55</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="php_file_webshell('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php')">查杀</a> | <a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'Api.php')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php',12834)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak" filetype="config.php.bak"><td><input type="checkbox" name="id" value="config.php.bak"></td>						<td class="column-name"><span class="ico ico-file"></span><a class="text" title="config.php.bak">config.php.bak</a></td>						<td>330 B</td>						<td>2021/02/16 00:07:06</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'config.php.bak')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak',330)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php" filetype="config.php"><td><input type="checkbox" name="id" value="config.php"></td>						<td class="column-name"><span class="ico ico-php"></span><a class="text" title="config.php">config.php</a></td>						<td>331 B</td>						<td>2021/02/16 17:08:50</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="php_file_webshell('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php')">查杀</a> | <a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'config.php')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php',331)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak" filetype="function.php.bak"><td><input type="checkbox" name="id" value="function.php.bak"></td>						<td class="column-name"><span class="ico ico-file"></span><a class="text" title="function.php.bak">function.php.bak</a></td>						<td>3.00 KB</td>						<td>2021/02/25 00:39:50</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'function.php.bak')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak',3077)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php" filetype="function.php"><td><input type="checkbox" name="id" value="function.php"></td>						<td class="column-name"><span class="ico ico-php"></span><a class="text" title="function.php">function.php</a></td>						<td>3.04 KB</td>						<td>2021/02/25 00:46:05</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="php_file_webshell('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php')">查杀</a> | <a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'function.php')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php',3118)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak" filetype="incident.php.bak"><td><input type="checkbox" name="id" value="incident.php.bak"></td>						<td class="column-name"><span class="ico ico-file"></span><a class="text" title="incident.php.bak">incident.php.bak</a></td>						<td>739 B</td>						<td>2021/01/30 17:34:42</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'incident.php.bak')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak',739)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php" filetype="incident.php"><td><input type="checkbox" name="id" value="incident.php"></td>						<td class="column-name"><span class="ico ico-php"></span><a class="text" title="incident.php">incident.php</a></td>						<td>754 B</td>						<td>2021/01/30 17:56:03</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="php_file_webshell('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php')">查杀</a> | <a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'incident.php')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php',754)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak" filetype="qq.class.php.bak"><td><input type="checkbox" name="id" value="qq.class.php.bak"></td>						<td class="column-name"><span class="ico ico-file"></span><a class="text" title="qq.class.php.bak">qq.class.php.bak</a></td>						<td>31.21 KB</td>						<td>2021/02/25 00:15:14</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'qq.class.php.bak')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak',31957)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php" filetype="qq.class.php"><td><input type="checkbox" name="id" value="qq.class.php"></td>						<td class="column-name"><span class="ico ico-php"></span><a class="text" title="qq.class.php">qq.class.php</a></td>						<td>31.20 KB</td>						<td>2021/02/25 00:15:44</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="php_file_webshell('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php')">查杀</a> | <a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'qq.class.php')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php',31950)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php')">删除</a>						</span></td></tr><tr class="folderBoxTr ui-selectee" fileshare="0" data-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html" filetype="test.html"><td><input type="checkbox" name="id" value="test.html"></td>						<td class="column-name"><span class="ico ico-html"></span><a class="text" title="test.html">test.html</a></td>						<td>119 B</td>						<td>2021/02/16 16:52:59</td>						<td>644</td>						<td>www</td>						<td class="editmenu">						<span><a class="btlink" href="javascript:;" onclick="CopyFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html')">复制</a> | 						<a class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html')">剪切</a> | 						<a class="btlink" href="javascript:;" onclick="ReName(0,'test.html')">重命名</a> | 						<a class="btlink" href="javascript:SetChmod(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html');">权限</a> | 						<a class="btlink" href="javascript:Zip('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html');">压缩</a> | 						<a class="btlink" href="javascript:;" onclick="openEditorView(0,'/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html')">编辑</a> | <a class="btlink" href="javascript:;" onclick="GetFileBytes('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html',119)">下载</a> | 						<a class="btlink" href="javascript:;" onclick="DeleteFile('/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html')">删除</a>						</span></td></tr></tbody>						</table></div><div class="oldTableShadow"></div></div>
+            <div class="dataTables_paginate paging_bootstrap pagination plr15" style="position: relative; top: -15px;">
+                <ul id="filePage" class="page"><div><span class="Pcurrent">1</span><span class="Pnumber">1/1</span><span class="Pline">从1-13条</span><span class="Pcount" style="left: 16px;">共13条数据</span><span class="Pcount-item">每页<select style="margin-left: 3px;margin-right: 3px;border:#ddd 1px solid" class="showRow"><option value="10">10</option><option value="50">50</option><option value="100">100</option><option value="200" selected="">200</option><option value="500">500</option><option value="1000">1000</option><option value="2000">2000</option></select>条</span></div></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<ul id="rmenu" class="dropdown-menu" style="display:none">
+    <li onclick="javascript:Batch(1);"><a style="cursor: pointer;">复制</a></li>
+    <li onclick="javascript:Batch(2);"><a style="cursor: pointer;">剪切</a></li>
+    <li onclick="javascript:Batch(5);"><a style="cursor: pointer;">压缩</a></li>
+    <li onclick="javascript:Batch(3);"><a style="cursor: pointer;">权限</a></li>
+    <li onclick="javascript:Batch(4);"><a style="cursor: pointer;">删除</a></li>
+</ul>
+<link rel="stylesheet" href="http://47.101.183.91:8476/static/ace/styles/icons.css">
+<script type="text/tmplate" id="aceTmplate">
+    <div id="ace_conter">
+        <div class="ace_header" style="top: 0">
+            <span class="saveFile"><i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i><span>保存</span></span>
+            <span class="saveFileAll"><i class="glyphicon glyphicon-duplicate" aria-hidden="true"></i><span>全部保存</span></span>
+            <span class="refreshs"><i class="glyphicon glyphicon-refresh" aria-hidden="true"></i><span>刷新</span></span>
+            <span class="searchs"><i class="glyphicon glyphicon-search" aria-hidden="true"></i><span>搜索</span></span>
+            <span class="replaces"><i class="glyphicon glyphicon-retweet" aria-hidden="true"></i><span>替换</span></span>
+            <span class="jumpLine"><i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i><span>跳转行</span></span>
+            <span class="fontSize"><i class="glyphicon glyphicon-text-width" aria-hidden="true"></i><span>字体</span></span>
+            <span class="themes"><i class="glyphicon glyphicon-magnet" aria-hidden="true"></i><span>主题</span></span>
+            <span class="setUp"><i class="glyphicon glyphicon-cog" aria-hidden="true"></i><span>设置</span></span>
+            <span class="helps"><i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i><span>快捷键</span></span>
+            <div class="pull-down" title="隐藏工具条" style="top: 0"><i class="glyphicon glyphicon-menu-down" aria-hidden="true"></i></div>
+        </div>
+        <div class="ace_overall" style="top: 35px;">
+            <!-- 编辑器目录 -->
+            <div class="ace_catalogue" style="left:0px">
+                <div class="ace_catalogue_title">目录<div class="dir-menu-right"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></div></div>
+            	<div class="ace_dir_tools">
+            		<div class="upper_level"  title="返回上级目录">
+            			<i class="glyphicon glyphicon-share-alt" aria-hidden="true"></i>
+            			<span>上一级</span>
+            		</div>
+            		<div class="search_file" title="搜索内容">
+            			<i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+            			<span>搜索</span>
+            		</div>
+            		<div class="new_folder" title="新建文件/目录">
+            			<i class="glyphicon glyphicon-plus"  aria-hidden="true"></i>
+            			<span>新建</span>
+            			<ul class="folder_down_up">
+            				<li data-type="2"><i class="folder-icon"></i>新建文件夹</li>
+	                    	<li data-type="3"><i class="text-icon"></i>新建文件</li>
+            			</ul>
+            		</div>
+            		<div class="refresh_dir" title="刷新当前目录">
+            			<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            			<span>刷新</span>
+            		</div>
+            		<span class="ace_editor_main_storey"></span>
+            	</div>
+
+                <div class="ace_catalogue_list">
+                    <ul class="cd-accordion-menu"></ul>
+                    <ul class="ace_catalogue_menu">
+                    	<li data-type="0"><i class="glyphicon glyphicon-refresh" aria-hidden="true"></i><span>刷新目录</span></li>
+                    	<li data-type="1"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i><span>打开子目录</span></li>
+	                    <li data-type="2"><i class="folder-icon"></i><span>新建文件夹</span></li>
+	                    <li data-type="3"><i class="text-icon"></i><span>新建文件</span></li>
+	                    <li data-type="4"><i class="rename-icon img-icon"></i><span>重命名</span></li>
+	                    <li data-type="5"><i class="down-icon img-icon"></i><span>下载</span></li>
+	                    <li data-type="6"><i class="del-icon img-icon"></i><span>删除</span></li>
+	                </ul>
+                </div>
+                <div class="ace_catalogue_drag_icon">
+                    <div class="drag_icon_conter"></div>
+                    <span class="fold_icon_conter" title="隐藏文件目录"></span>
+                </div>
+
+            </div>
+            <!-- 编辑内容 -->
+            <div class="ace_editor_main" style="margin-left:265px">
+                <ul class="ace_conter_menu"></ul>
+                <div class="ace_conter_tips"><div class="tips"></div></div>
+                <div class="ace_editor_main_storey"></div>
+                <div class="ace_conter_editor"></div>
+                <div class="ace_conter_toolbar">
+                    <div class="pull-left size_ellipsis">
+                        <span data-type="path" class="size_ellipsis"></span>
+                    </div>
+                    <div class="pull-right">
+                        <span data-type="cursor"></span>
+                        <span data-type="history"></span>
+                        <span data-type="tab"></span>
+                        <span data-type="encoding"></span>
+                        <span data-type="lang"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="ace_toolbar_menu" style="display: none;">
+                <div class="menu-item menu-tabs" style="display: none;">
+                    <div class="menu-title">设置制表符</div>
+                    <ul class="tabsType">
+                        <li data-value="nbsp">使用空格缩进</li>
+                        <li data-value="tabs">使用 "Tab" 缩进</li>
+                    </ul>
+                    <div class="menu-title" style="margin-top:15px">设置制表符长度</div>
+                    <ul class="tabsSize">
+                        <li data-value="1">1</li>
+                        <li data-value="2">2</li>
+                        <li data-value="3">3</li>
+                        <li data-value="4">4</li>
+                        <li data-value="5">5</li>
+                        <li data-value="6">6</li>
+                    </ul>
+                </div>
+                <div class="menu-item menu-encoding" style="display: none;">
+                    <div class="menu-title">设置文件保存编码格式</div>
+                    <ul></ul>
+                </div>
+                <div class="menu-item menu-files" style="display: none;">
+                    <div class="menu-conter">
+                    	<input type="text" class="menu-input" placeholder="输入语言模式">
+                    	<i class="fa fa-close" aria-hidden="true"></i>
+                    </div>
+                    <div class="menu-title">设置文件语言关联</div>
+                    <ul></ul>
+                </div>
+                <div class="menu-item menu-fontSize" style="display: none;">
+                    <div class="menu-title">设置编辑器字体大小</div>
+                    <div class="menu-conter">
+                        <div class="set_font_size">
+                            <input type="number" min="12" max="45"/>
+                            <span class="tips error">字体设置范围 12-45</span>
+                            <button class="btn-save">保存</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item menu-jumpLine" style="display: none;">
+                    <div class="menu-title">跳转到指定行</div>
+                    <div class="menu-conter">
+                        <div class="set_jump_line">
+                            <input type="number" min="0"/>
+                            <button class="btn-save">跳转</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item menu-themes" style="display: none;">
+                    <div class="menu-title">设置编辑器主题</div>
+                    <ul></ul>
+                </div>
+                <div class="menu-item menu-history" style="display: none;">
+                    <div class="menu-title">文件历史版本</div>
+                    <ul></ul>
+                </div>
+                <div class="menu-item menu-setUp"  style="display: none;">
+                	<div class="menu-title">编辑器设置【部分设置需要重新打开编辑生效】</div>
+                	<ul class="editor_menu">
+                		<li data-type="wrap">自动换行</li>
+                		<li data-type="enableLiveAutocompletion">代码自动完成</li>
+                		<li data-type="enableSnippets">启用代码段</li>
+                		<li data-type="showInvisibles">显示隐藏字符</li>
+                		<li data-type="showLineNumbers">显示行号</li>
+                		
+                	</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/tmplate" id="aceShortcutKeys">
+	<div class ="keysUp_left">
+        <div class="keysUp-row">
+            <div class="keysUp-title">常用快捷键</div>
+            <div class="keysUp-content">
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">S</span>
+                    <span class="keysUp-tips">保存文件</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">C</span>
+                    <span class="keysUp-tips">复制内容</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">X</span>
+                    <span class="keysUp-tips">剪切内容</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">V</span>
+                    <span class="keysUp-tips">粘贴内容</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">A</span>
+                    <span class="keysUp-tips">全选内容</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Z</span>
+                    <span class="keysUp-tips">撤销操作</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Y</span>
+                    <span class="keysUp-tips">反撤销操作</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">F</span>
+                    <span class="keysUp-tips">搜索内容</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">H</span>
+                    <span class="keysUp-tips">替换内容</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACkElEQVQ4T62UTWhTQRDHZ6bhFZpK9CAetEoPocF6MG83jRaqFvHjIgrFQ9WLQkHsyZMWvAkFL978QET0YPVUxUuLFFK/Ynk7W0tAqeIHFFEoQqGGWKt9I6+Y2Mh7iQcX9jT//c3Of2cW4T8vXMmbnp5eNT8/34uIKtgAoESEEXGsubl5MJVKfa2Xvwo4OTm52/f9sahDWusqfZiuSuB53gARDYYJRWQ4k8n0WGsPAMAPpdTo37qJiYnNVUBmvg8AB0MzIx5TSt1m5msA0IeIIyIyS0SffN/fFNiDiLMVYD6fX+84znsAcMKAi4uLTZ2dnd+YeRYA1kZUca4CZOZDAHAvwr/XWuuU53ktRDQT5TEi/jHZGHMVEVsRsSAiz3zfd2KxWKvv+6cR8ZZS6gwznwKASxHAj1rrlsoNc7lcrLu7+2eI0RsaGxs3ptPpvDFmHBF3RgCva637KsBCobBmYWFhLxHtAYCEiIw2NDQ8d133VRlgrR0XkVAgIvYopYaXgcx8EgCuRGQe0lofLceMMSeIKCsiwct+EZG3sVjsoeM4hfb29uIy0BhzAxGPhwGJ6Kzruhestf2lUmmoq6trrta0IDM3IeKUiCTDhEtLS23ZbPYNMwsAzIjIIxGxIvKOiILeawuK1FpfDM6jMWYXIuYispa01nFr7X4RGanRLjuUUk+Wgcw8AACh4wYAd7TWR5g5aJWgZcLWy0QioZLJ5Pcy8DEitohIUPYHRNwOANuCoIj0ZjKZu7WmAwBuaq0r/qPneVs7OjqmVqY2xmwBgN5isXg+Ho+vJqLPNR6iX2t9uRyv+x3VmQ4goozruvzPwEBord0nIod/W7EOER8AwFMiepFOp6uqq3vDWj0XFvsFsp0JRWHn0UYAAAAASUVORK5CYII=" /></span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Alt</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">0</span>
+                    <span class="keysUp-tips">折叠代码</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACkElEQVQ4T62UTWhTQRDHZ6bhFZpK9CAetEoPocF6MG83jRaqFvHjIgrFQ9WLQkHsyZMWvAkFL978QET0YPVUxUuLFFK/Ynk7W0tAqeIHFFEoQqGGWKt9I6+Y2Mh7iQcX9jT//c3Of2cW4T8vXMmbnp5eNT8/34uIKtgAoESEEXGsubl5MJVKfa2Xvwo4OTm52/f9sahDWusqfZiuSuB53gARDYYJRWQ4k8n0WGsPAMAPpdTo37qJiYnNVUBmvg8AB0MzIx5TSt1m5msA0IeIIyIyS0SffN/fFNiDiLMVYD6fX+84znsAcMKAi4uLTZ2dnd+YeRYA1kZUca4CZOZDAHAvwr/XWuuU53ktRDQT5TEi/jHZGHMVEVsRsSAiz3zfd2KxWKvv+6cR8ZZS6gwznwKASxHAj1rrlsoNc7lcrLu7+2eI0RsaGxs3ptPpvDFmHBF3RgCva637KsBCobBmYWFhLxHtAYCEiIw2NDQ8d133VRlgrR0XkVAgIvYopYaXgcx8EgCuRGQe0lofLceMMSeIKCsiwct+EZG3sVjsoeM4hfb29uIy0BhzAxGPhwGJ6Kzruhestf2lUmmoq6trrta0IDM3IeKUiCTDhEtLS23ZbPYNMwsAzIjIIxGxIvKOiILeawuK1FpfDM6jMWYXIuYispa01nFr7X4RGanRLjuUUk+Wgcw8AACh4wYAd7TWR5g5aJWgZcLWy0QioZLJ5Pcy8DEitohIUPYHRNwOANuCoIj0ZjKZu7WmAwBuaq0r/qPneVs7OjqmVqY2xmwBgN5isXg+Ho+vJqLPNR6iX2t9uRyv+x3VmQ4goozruvzPwEBord0nIod/W7EOER8AwFMiepFOp6uqq3vDWj0XFvsFsp0JRWHn0UYAAAAASUVORK5CYII=" /></span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Alt</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Shift</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">0</span>
+                    <span class="keysUp-tips">展开代码</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Esc</span>
+                    <span class="keysUp-tips">退出搜索、取消自动提示</span>
+                </div>
+            </div>
+        </div>
+        <div class="keysUp-row">
+            <div class="keysUp-title">光标移动</div>
+            <div class="keysUp-content">
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Home</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">End</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Up</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Left</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Down</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Right</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Home</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">End</span>
+                    <span class="keysUp-tips">光标移动到文档首/尾</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">P</span>
+                    <span class="keysUp-tips">跳转到匹配的标签</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">pageUp</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">pageDown</span>
+                    <span class="keysUp-tips">光标上/下翻页</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Alt</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Left</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Right</span>
+                    <span class="keysUp-tips">光标移动到行首/尾</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">I</span>
+                    <span class="keysUp-tips">跳转到指定行</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Alt</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Up</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Down</span>
+                    <span class="keysUp-tips">上/下增加光标</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class ="keysUp_right">
+        <div class="keysUp-row">
+            <div class="keysUp-title">内容选择</div>
+            <div class="keysUp-content">
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">鼠标框选——拖动</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Shift</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Home</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">End</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Up</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Left</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Down</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Right</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Shift</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">pageUp</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">PageDown</span>
+                    <span class="keysUp-tips">上下翻页选中</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Shift</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Home</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-tips">当前光标至头/尾</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Alt</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">鼠标拖动</span>
+                    <span class="keysUp-tips">块选择</span>
+                </div>
+            </div>
+        </div>
+        <div class="keysUp-row">
+            <div class="keysUp-title">编辑</div>
+            <div class="keysUp-content">
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">/</span>
+                    <span class="keysUp-tips">注释&取消注释</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Tab</span>
+                    <span class="keysUp-tips">对齐</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Shift</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Tab</span>
+                    <span class="keysUp-tips">整体前移</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Delete</span>
+                    <span class="keysUp-tips">删除</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">D</span>
+                    <span class="keysUp-tips">删除整行</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Alt</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Shift</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Up</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Down</span>
+                    <span class="keysUp-tips">复制行并添加到上一行/下一行</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Alt</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Delete</span>
+                    <span class="keysUp-tips">删除光标右侧内容</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Alt</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Up</span>
+                    <span class="keysUp-symbols">/</span>
+                    <span class="keysUp-btn">Down</span>
+                    <span class="keysUp-tips">当前行和上一行/下一行交换</span>
+                </div>
+                <div class="keysUp-item">
+                    <span class="keysUp-btn">Ctrl</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">Shift</span>
+                    <span class="keysUp-symbol">+</span>
+                    <span class="keysUp-btn">D</span>
+                    <span class="keysUp-tips">复制行并添加到下面</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+            <div class="footer bgw">宝塔Linux面板 ©2014-2021 广东堡塔安全技术有限公司 (bt.cn)<a style="margin-left:20px;color:#20a53a;" href="http://www.bt.cn/bbs" target="_blank">求助|建议请上宝塔论坛</a>
+        </div>
+    </div>
+    <script src="http://47.101.183.91:8476/static/js/jquery-1.10.2.min.js"></script>
+    <script src="http://47.101.183.91:8476/static/js/bootstrap.min.js"></script>
+    <script src="http://47.101.183.91:8476/static/language/Simplified_Chinese/lan.js?date=7.3.0"></script>
+    <script src="http://47.101.183.91:8476/static/layer/layer.js?date=7.3.0"></script>
+    <script src="http://47.101.183.91:8476/static/js/public.js?version1=7.3.0"></script>
+    <script src="http://47.101.183.91:8476/static/js/public_backup.js?version1=7.3.0"></script>
+    <script src="http://47.101.183.91:8476/static/codemirror/lib/codemirror.js?version=7.3.0"></script>
+    
+<script type="text/javascript" src="http://47.101.183.91:8476/static/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://47.101.183.91:8476/static/js/jquery.contextify.min.js"></script>
+<script type="text/javascript" src="http://47.101.183.91:8476/static/js/polyfill.js"></script>
+<script type="text/javascript" src="http://47.101.183.91:8476/static/js/files.js?date20191219=7.3.0"></script>
+<script type="text/javascript" src="http://47.101.183.91:8476/static/js/jquery.dragsort-0.5.2.min.js"></script>
+<script type="text/javascript" src="http://47.101.183.91:8476/static/ace/ace.js?date=7.3.0"></script>
+<script type="text/javascript" src="http://47.101.183.91:8476/static/ace/ext-language_tools.js?date=7.3.0"></script>
+<script type="text/javascript" src="http://47.101.183.91:8476/static/js/clipboard.min.js"></script>
+<script type="text/javascript" src="http://47.101.183.91:8476/static/js/jquery.dragsort-0.5.2.min.js"></script>
+<script type="text/javascript">
+	setTimeout(function(){
+		GetDisk();
+	},500);
+	var xPath = getCookie('Path');
+	setTimeout(function(){
+		GetFiles((xPath!=undefined?xPath:'/www/wwwroot'));
+	},800);
+
+	PathPlaceBtn((xPath!=undefined?xPath:'/www/wwwroot'));
+	setCookie('uploadSize',1024 * 1024 * 1024);
+	if(getCookie('rank') == undefined || getCookie('rank') == null){
+		setCookie('rank','a');
+	}
+	$("#set_icon").click(function(){
+		setCookie('rank','b');
+		$(this).addClass("active");
+		$("#set_list").removeClass("active");
+		GetFiles(getCookie('Path'));
+	});
+	$("#set_list").click(function(){
+		setCookie('rank','a');
+		$(this).addClass("active");
+		$("#set_icon").removeClass("active");
+		GetFiles(getCookie('Path'));
+	});
+	$(".refreshBtn").click(function(){
+		GetFiles(getCookie('Path'));
+    });
+</script>
+
+    <script type="text/javascript">
+	    function IEVersion() {
+            // 取得浏览器的userAgent字符串
+            var userAgent = navigator.userAgent;
+            // 判断是否为小于IE11的浏览器
+            var isLessIE11 = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1;
+            // 判断是否为IE的Edge浏览器
+            var isEdge = userAgent.indexOf('Edge') > -1 && !isLessIE11;
+            // 判断是否为IE11浏览器
+            var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf('rv:11.0') > -1;
+            if (isLessIE11) {
+                var IEReg = new RegExp('MSIE (\\d+\\.\\d+);');
+                // 正则表达式匹配浏览器的userAgent字符串中MSIE后的数字部分，，这一步不可省略！！！
+                IEReg.test(userAgent);
+                // 取正则表达式中第一个小括号里匹配到的值
+                var IEVersionNum = parseFloat(RegExp['$1']);
+                if (IEVersionNum === 7) {// IE7
+                    return 7
+                } else if (IEVersionNum === 8) {// IE8
+                    return 8
+                } else if (IEVersionNum === 9) {// IE9
+                    return 9
+                } else if (IEVersionNum === 10) { // IE10
+                    
+                    return 10
+                } else {// IE版本<7
+                    return 6
+                }
+            } else if (isEdge) { // edge
+               
+                return 'edge'
+            } else if (isIE11) {// IE11
+                return 11
+            } else {// 不是ie浏览器
+                return -1
+            }
+        }
+        if(IEVersion() != -1 && IEVersion() < 9){
+            window.location.href = '/tips';
+        }
+	    $("#setBox").click(function () {
+	        if ($(this).prop("checked")) {
+	            $("input[name=id]").prop("checked", true);
+	        } else {
+	            $("input[name=id]").prop("checked", false);
+	        }
+	    });
+	    setCookie('order', 'id desc');
+	    var is_files_html = false;
+	    var task_open = 0;
+	    var task_close = false;
+	    if ($(".current").attr("id") == 'memuAfiles') {
+	        is_files_html = true;
+	    }
+	    function task_stat(my_init) {
+	        if (!my_init) {
+	            my_init = 0;
+	            if (task_open) return;
+	        }
+	        if (task_close) return;
+	        $.post('/task?action=get_task_lists', { status: -3 }, function (task_list) {
+	            if (task_list.length == 0) {
+	                if (my_init && is_files_html) GetFiles(getCookie('Path'));
+	                if (task_open) {
+	                    layer.close(task_open);
+	                    task_open = false;
+	                }
+	                return;
+	            }
+	
+	            console.log(task_list.length)
+	            var msg_body = '';
+	            var is_add = false;
+	            for (var i = 0; i < task_list.length; i++) {
+	                if (task_list[i]['status'] == -1) {
+	                    if (!task_open || !$(".message-list").attr("class")) {
+	                        show_task();
+	                    }
+	
+	                    if (task_list[i]['type'] == '1') {
+	                        msg_body += '<div class="mw-con">\
+		                                <ul class="waiting-down-list">\
+			                                <li>\
+				                                <div class="down-filse-name"><span class="fname" style="width:80%;" title="正在下载: '+ task_list[i].shell + '">正在下载: ' + task_list[i].shell + '</span><span style="position: absolute;left: 84%;top: 25px;color: #999;">' + task_list[i].log.pre + '%</span><span class="btlink" onclick="remove_task(' + task_list[i].id + ')" style="position: absolute;top: 25px;right: 20px;">取消</span></div>\
+				                                <div class="down-progress"><div class="done-progress" style="width:'+ task_list[i].log.pre + '%"></div></div>\
+				                                <div class="down-info"><span class="total-size"> '+ task_list[i].log.used + '/' + ToSize(task_list[i].log.total) + '</span><span class="speed-size">' + (task_list[i].log.speed == 0 ? '正在连接..' : task_list[i].log.speed) + '/s</span><span style="margin-left: 20px;">预计还要: ' + task_list[i].log.time +'</span></div>\
+			                                </li>\
+	                                        </ul>\
+	                                    </div>'
+	                    } else {
+	                        msg_body += '<div class="mw-title"><span style="max-width: 88%;display: block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">' + task_list[i].name + ': ' + task_list[i].shell + '</span><span class="btlink" onclick="remove_task(' + task_list[i].id + ')"  style="position: absolute;top: 10px;right: 15px;">取消</span></div>\
+	                                    <div class="mw-con codebg">\
+		                                    <code>'+ task_list[i].log +'</code>\
+	                                    </div>'
+	
+	                    }
+	
+	                } else {
+	                    if (!is_add) {
+	                        msg_body += '<div class="mw-title">等待执行任务</div><div class="mw-con"><ul class="waiting-list">';
+	                        is_add = true;
+	                    }
+	                    msg_body += '<li><span class="wt-list-name" style="width: 90%;">' + task_list[i].name + ': ' + task_list[i].shell + '</span><span class="mw-cancel" onclick="remove_task(' + task_list[i].id + ')">X</span></li>';
+	                }
+	            }
+	            if (task_open) {
+	                if (is_add) {
+	                    msg_body += '</ul></div>';
+	                }
+	                $(".message-list").html(msg_body);
+	            }
+	
+	                        
+	            if (my_init > 3) {
+	                if (is_files_html) GetFiles(getCookie('Path'));
+	                my_init = 1;
+	            }
+	            my_init +=1
+	            setTimeout(function () { task_stat(my_init); }, 1000);
+	        });
+	    }
+	    function show_task() {
+	        task_open = layer.open({
+	            type: 1,
+	            title: "实时任务队列",
+	            area: '500px',
+	            closeBtn: 2,
+	            shadeClose: false,
+	            shade: false,
+	            offset: 'auto',
+	            content: '<div style="margin: 10px;" class="message-list"></div>',
+	            cancel: function () {
+	                task_close = true;
+	            }
+	        });
+	    }                
+	    function remove_task(id) {
+	        loadT = layer.msg('正在取消任务...', { time: 0, icon: 16, shade: [0.3, '#000'] });
+	        $.post('/task?action=remove_task', { id: id }, function (rdata) {
+	            layer.close(loadT)
+	            layer.msg(rdata.msg);
+	        });
+	    }
+		loadScript([
+			'http://47.101.183.91:8476/static/laydate/laydate.js',
+			'http://47.101.183.91:8476/static/js/jquery.qrcode.min.js',
+			'http://47.101.183.91:8476/static/js/clipboard.min.js'
+		],function(e){
+			
+		});
+	    task_stat();
+	   
+	</script>
+
+</div><script type="text/javascript" src="http://47.101.183.91:8476/static/laydate/laydate.js"></script><script type="text/javascript" src="http://47.101.183.91:8476/static/js/jquery.qrcode.min.js"></script><script type="text/javascript" src="http://47.101.183.91:8476/static/js/clipboard.min.js"></script><div class="mask_layer" id="mask_layer" style="position:fixed;top:0;left:0;right:0;bottom:0; background:rgba(255,255,255,0.6);border:3px #ccc dashed;z-index:99999999;display:none;color:#999;font-size:40px;text-align:center;overflow:hidden;"><span style="position: absolute;top: 50%;left: 50%;margin-left: -200px;margin-top: -40px;">上传文件到当前目录下</span></div><div class="layui-layer layui-layer-page aceEditors layer-anim" id="layui-layer1" type="page" times="1" showtime="0" contype="string" style="z-index: 20000; width: 80%; height: 80%; top: 63px; left: 84px;"><div class="layui-layer-title" style="cursor: move;">在线文本编辑器</div><div id="" class="layui-layer-content" style="height: 460px;">
+    <div id="ace_conter" class="monokai">
+        <div class="ace_header" style="top: 0">
+            <span class="saveFile"><i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i><span>保存</span></span>
+            <span class="saveFileAll"><i class="glyphicon glyphicon-duplicate" aria-hidden="true"></i><span>全部保存</span></span>
+            <span class="refreshs"><i class="glyphicon glyphicon-refresh" aria-hidden="true"></i><span>刷新</span></span>
+            <span class="searchs"><i class="glyphicon glyphicon-search" aria-hidden="true"></i><span>搜索</span></span>
+            <span class="replaces"><i class="glyphicon glyphicon-retweet" aria-hidden="true"></i><span>替换</span></span>
+            <span class="jumpLine"><i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i><span>跳转行</span></span>
+            <span class="fontSize"><i class="glyphicon glyphicon-text-width" aria-hidden="true"></i><span>字体</span></span>
+            <span class="themes"><i class="glyphicon glyphicon-magnet" aria-hidden="true"></i><span>主题</span></span>
+            <span class="setUp"><i class="glyphicon glyphicon-cog" aria-hidden="true"></i><span>设置</span></span>
+            <span class="helps"><i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i><span>快捷键</span></span>
+            <div class="pull-down" title="隐藏工具条" style="top: 0"><i class="glyphicon glyphicon-menu-down" aria-hidden="true"></i></div>
+        </div>
+        <div class="ace_overall" style="top: 35px;">
+            <!-- 编辑器目录 -->
+            <div class="ace_catalogue" style="left:0px">
+                <div class="ace_catalogue_title" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api">目录：/www/wwwroot/ai.kenaisq.top/API/data/web/Api</div>
+            	<div class="ace_dir_tools">
+            		<div class="upper_level" title="返回上级目录" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web"><i class="glyphicon glyphicon-share-alt" aria-hidden="true"></i>上一级</div>
+            		<div class="search_file" title="搜索内容">
+            			<i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+            			<span>搜索</span>
+            		</div>
+            		<div class="new_folder" title="新建文件/目录">
+            			<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+            			<span>新建</span>
+            			<ul class="folder_down_up">
+            				<li data-type="2"><i class="folder-icon"></i>新建文件夹</li>
+	                    	<li data-type="3"><i class="text-icon"></i>新建文件</li>
+            			</ul>
+            		</div>
+            		<div class="refresh_dir" title="刷新当前目录">
+            			<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            			<span>刷新</span>
+            		</div>
+            		<span class="ace_editor_main_storey"></span>
+            	</div>
+
+                <div class="ace_catalogue_list">
+                    <ul class="cd-accordion-menu"><li class="has-children children_1" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/data" data-size="4096">					<div class="file_fold group_1" data-group="1" data-file="Dir">						<span class="glyphicon glyphicon-menu-right"></span>						<span class="file_title"><i class="folder-icon"></i><span>data</span></span>					</div>					<ul data-group=""></ul>					<span class="has_children_separator"></span>				</li><li class="has-children children_1" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/error" data-size="4096">					<div class="file_fold group_1" data-group="1" data-file="Dir">						<span class="glyphicon glyphicon-menu-right"></span>						<span class="file_title"><i class="folder-icon"></i><span>error</span></span>					</div>					<ul data-group=""></ul>					<span class="has_children_separator"></span>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php" data-size="12834" data-suffix="php">					<div class="file_fold  group_1 active bg" data-group="1" data-file="Files">						<span class="file_title"><i class="php-icon"></i><span>Api.php</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php.bak" data-size="12634" data-suffix="text">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="text-icon"></i><span>Api.php.bak</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php" data-size="331" data-suffix="php">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="php-icon"></i><span>config.php</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/config.php.bak" data-size="330" data-suffix="text">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="text-icon"></i><span>config.php.bak</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php" data-size="3118" data-suffix="php">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="php-icon"></i><span>function.php</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/function.php.bak" data-size="3077" data-suffix="text">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="text-icon"></i><span>function.php.bak</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php" data-size="754" data-suffix="php">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="php-icon"></i><span>incident.php</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/incident.php.bak" data-size="739" data-suffix="text">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="text-icon"></i><span>incident.php.bak</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php" data-size="31950" data-suffix="php">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="php-icon"></i><span>qq.class.php</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/qq.class.php.bak" data-size="31957" data-suffix="text">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="text-icon"></i><span>qq.class.php.bak</span></span>					</div>				</li><li class="has-children" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html" data-menu-path="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/test.html" data-size="119" data-suffix="html">					<div class="file_fold  group_1" data-group="1" data-file="Files">						<span class="file_title"><i class="html-icon"></i><span>test.html</span></span>					</div>				</li></ul>
+                    <ul class="ace_catalogue_menu">
+                    	<li data-type="0"><i class="glyphicon glyphicon-refresh" aria-hidden="true"></i><span>刷新目录</span></li>
+                    	<li data-type="1"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i><span>打开子目录</span></li>
+	                    <li data-type="2"><i class="folder-icon"></i><span>新建文件夹</span></li>
+	                    <li data-type="3"><i class="text-icon"></i><span>新建文件</span></li>
+	                    <li data-type="4"><i class="rename-icon img-icon"></i><span>重命名</span></li>
+	                    <li data-type="5"><i class="down-icon img-icon"></i><span>下载</span></li>
+	                    <li data-type="6"><i class="del-icon img-icon"></i><span>删除</span></li>
+	                </ul>
+                </div>
+                <div class="ace_catalogue_drag_icon">
+                    <div class="drag_icon_conter"></div>
+                    <span class="fold_icon_conter" title="隐藏文件目录"></span>
+                </div>
+
+            </div>
+            <!-- 编辑内容 -->
+            <div class="ace_editor_main" style="margin-left:265px">
+                <ul class="ace_conter_menu" data-listidx="0"><li class="item active item_tab_4nNB6bTC" title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php" data-type="PHP" data-mode="php" data-id="4nNB6bTC" data-filename="Api.php"><div class="ace_item_box"><span class="icon_file"><i class="php-icon"></i></span><span title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php">Api.php</span><i class="glyphicon glyphicon-remove icon-tool" aria-hidden="true" data-file-state="0" data-title="Api.php"></i></div></li></ul>
+                <div class="ace_conter_tips" style="display: none;"><div class="tips"></div></div>
+                <div class="ace_editor_main_storey"></div>
+                <div class="ace_conter_editor" style="height: 385px;"><div id="ace_editor_4nNB6bTC" class="ace_editors active ace_editor ace-monokai ace_dark" style="font-size:14px"><textarea class="ace_text-input" wrap="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="opacity: 0; font-size: 1px; height: 1px; width: 1px; top: 34px; left: 230px;"></textarea><div class="ace_gutter" aria-hidden="true" style="left: 0px; width: 57px;"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="height: 1e+06px; top: 0px; left: 0px; width: 57px;"><div class="ace_gutter-cell " style="height: 17px; top: 0px;">1<span style="display: none;"></span></div><div class="ace_gutter-active-line ace_gutter-cell " style="height: 17px; top: 17px;">2<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 17px; top: 34px;">3<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 17px; top: 51px;">4<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 17px; top: 68px;">5<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 17px; top: 85px;">6<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 34px; top: 102px;">7<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 17px; top: 136px;">8<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 34px; top: 153px;">9<span style="display: inline-block; height: 17px;" class="ace_fold-widget ace_start ace_open"></span></div><div class="ace_gutter-cell " style="height: 17px; top: 187px;">10<span style="display: inline-block; height: 17px;" class="ace_fold-widget ace_start ace_open"></span></div><div class="ace_gutter-cell " style="height: 34px; top: 204px;">11<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 17px; top: 238px;">12<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 17px; top: 255px;">13<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 34px; top: 272px;">14<span style="display: inline-block; height: 17px;" class="ace_fold-widget ace_start ace_open"></span></div><div class="ace_gutter-cell " style="height: 17px; top: 306px;">15<span style="display: inline-block; height: 17px;" class="ace_fold-widget ace_start ace_open"></span></div><div class="ace_gutter-cell " style="height: 85px; top: 323px;">16<span style="display: none;"></span></div></div></div><div class="ace_scroller" style="left: 57px; right: 10px; bottom: 0px;"><div class="ace_content" style="top: 0px; left: 0px; width: 339px; height: 452px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 620px; visibility: hidden;"></div></div><div class="ace_layer ace_marker-layer"><div class="ace_active-line" style="height: 17px; top: 17px; left: 0px; right: 0px;"></div></div><div class="ace_layer ace_text-layer" style="height: 1e+06px; margin: 0px 4px; top: 0px; left: 0px;"><div class="ace_line_group" style="height: 17px; top: 0px;"><div class="ace_line" style="height: 17px;"><span class="ace_support ace_php_tag">&lt;?php</span></div></div><div class="ace_line_group" style="height: 17px; top: 17px;"><div class="ace_line" style="height: 17px;"><span class="ace_support ace_function">define</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">'Run'</span><span class="ace_punctuation ace_operator">,</span><span class="ace_constant ace_language">__DIR__</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 17px; top: 34px;"><div class="ace_line" style="height: 17px;"><span class="ace_comment">//<span class="ace_cjk" style="width: 15.3945px;">运</span><span class="ace_cjk" style="width: 15.3945px;">行</span><span class="ace_cjk" style="width: 15.3945px;">目</span><span class="ace_cjk" style="width: 15.3945px;">录</span></span></div></div><div class="ace_line_group" style="height: 17px; top: 51px;"><div class="ace_line" style="height: 17px;"><span class="ace_support ace_function">require_once</span> <span class="ace_identifier">Run</span>.<span class="ace_string">"/qq.class.php"</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 17px; top: 68px;"><div class="ace_line" style="height: 17px;"><span class="ace_support ace_function">require_once</span> <span class="ace_identifier">Run</span>.<span class="ace_string">"/incident.php"</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 17px; top: 85px;"><div class="ace_line" style="height: 17px;"><span class="ace_identifier">error</span><span class="ace_paren ace_lparen">(</span><span class="ace_variable">$contents</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 34px; top: 102px;"><div class="ace_line" style="height: 17px;"><span class="ace_variable">$forbidden_route</span><span class="ace_keyword ace_operator">=</span><span class="ace_string">"./data/forbidden/config</span></div><div class="ace_line" style="height: 17px;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_string">.json"</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 17px; top: 136px;"><div class="ace_line" style="height: 17px;"><span class="ace_comment">//getPskey("qun.qq.com");</span></div></div><div class="ace_line_group" style="height: 34px; top: 153px;"><div class="ace_line" style="height: 17px;"><span class="ace_keyword">if</span><span class="ace_paren ace_lparen">(</span><span class="ace_support ace_function">preg_match</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">"/^<span class="ace_cjk" style="width: 15.3945px;">复</span><span class="ace_cjk" style="width: 15.3945px;">读</span> ?(.*)</span><span class="ace_constant ace_language ace_escape">\$</span><span class="ace_string">/"</span><span class="ace_punctuation ace_operator">,</span><span class="ace_variable">$Api</span><span class="ace_keyword ace_operator">-&gt;</span><span class="ace_identifier">msg</span></div><div class="ace_line" style="height: 17px;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_punctuation ace_operator">,</span><span class="ace_variable">$match</span><span class="ace_paren ace_rparen">))</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 17px; top: 187px;"><div class="ace_line" style="height: 17px;">    <span class="ace_keyword">if</span><span class="ace_paren ace_lparen">(</span><span class="ace_variable">$Api</span><span class="ace_keyword ace_operator">-&gt;</span><span class="ace_identifier">root</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 34px; top: 204px;"><div class="ace_line" style="height: 17px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">$Api</span><span class="ace_keyword ace_operator">-&gt;</span><span class="ace_identifier">sendGroupMsg</span><span class="ace_paren ace_lparen">(</span><span class="ace_variable">$Api</span><span class="ace_keyword ace_operator">-&gt;</span><span class="ace_identifier">gin</span></div><div class="ace_line" style="height: 17px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_punctuation ace_operator">,</span><span class="ace_variable">$match</span><span class="ace_paren ace_lparen">[</span><span class="ace_constant ace_numeric">1</span><span class="ace_paren ace_rparen">])</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 17px; top: 238px;"><div class="ace_line" style="height: 17px;">    <span class="ace_paren ace_rparen">}</span></div></div><div class="ace_line_group" style="height: 17px; top: 255px;"><div class="ace_line" style="height: 17px;"><span class="ace_paren ace_rparen">}</span></div></div><div class="ace_line_group" style="height: 34px; top: 272px;"><div class="ace_line" style="height: 17px;"><span class="ace_keyword">if</span><span class="ace_paren ace_lparen">(</span><span class="ace_support ace_function">preg_match</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">"/^<span class="ace_cjk" style="width: 15.3945px;">啦</span><span class="ace_cjk" style="width: 15.3945px;">啦</span><span class="ace_cjk" style="width: 15.3945px;">啦</span> ?(.*)</span><span class="ace_constant ace_language ace_escape">\$</span><span class="ace_string">/"</span><span class="ace_punctuation ace_operator">,</span><span class="ace_variable">$Api</span><span class="ace_keyword ace_operator">-&gt;</span><span class="ace_identifier">msg</span></div><div class="ace_line" style="height: 17px;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_punctuation ace_operator">,</span><span class="ace_variable">$match</span><span class="ace_paren ace_rparen">))</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 17px; top: 306px;"><div class="ace_line" style="height: 17px;">    <span class="ace_keyword">if</span><span class="ace_paren ace_lparen">(</span><span class="ace_variable">$Api</span><span class="ace_keyword ace_operator">-&gt;</span><span class="ace_identifier">root</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 85px; top: 323px;"><div class="ace_line" style="height: 17px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">$Api</span><span class="ace_keyword ace_operator">-&gt;</span><span class="ace_identifier">sendGroupMsg</span><span class="ace_paren ace_lparen">(</span><span class="ace_variable">$Api</span><span class="ace_keyword ace_operator">-&gt;</span><span class="ace_identifier">gin</span><span class="ace_punctuation ace_operator">,</span><span class="ace_string">"[pic</span></div><div class="ace_line" style="height: 17px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_string">,hash</span></div><div class="ace_line" style="height: 17px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_string">=40CC43640B51D3489CC1A201AB9C38</span></div><div class="ace_line" style="height: 17px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_string">5D,wide=1080,high=1026,cartoon</span></div><div class="ace_line" style="height: 17px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_string">=false]"</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span></div></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors"><div class="ace_cursor" style="display: block; top: 17px; left: 173px; width: 8px; height: 17px; animation-duration: 1000ms;"></div></div></div></div><div class="ace_scrollbar ace_scrollbar-v" style="width: 15px; bottom: 0px;"><div class="ace_scrollbar-inner" style="width: 15px; height: 10047px;"></div></div><div class="ace_scrollbar ace_scrollbar-h" style="height: 15px; left: 57px; right: 10px; display: none;"><div class="ace_scrollbar-inner" style="height: 15px; width: 339px;"></div></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: hidden;"><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: visible;">הההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההה</div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; overflow: visible;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div></div></div></div>
+                <div class="ace_conter_toolbar">
+                    <div class="pull-left size_ellipsis">
+                        <span data-type="path" class="size_ellipsis" data-id="4nNB6bTC">文件位置：<i title="/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php">/www/wwwroot/ai.kenaisq.top/API/data/web/Api/Api.php</i></span>
+                    </div>
+                    <div class="pull-right">
+                        <span data-type="cursor" data-id="4nNB6bTC">行<i class="cursor-row">2</i>,列<i class="cursor-line">22</i></span>
+                        <span data-type="history" data-id="4nNB6bTC">历史版本：<i>无</i></span>
+                        <span data-type="tab" data-id="4nNB6bTC">空格：<i>4</i></span>
+                        <span data-type="encoding" data-id="4nNB6bTC">编码：<i>UTF-8</i></span>
+                        <span data-type="lang" data-id="4nNB6bTC">语言：<i>PHP</i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="ace_toolbar_menu" style="display: none;">
+                <div class="menu-item menu-tabs" style="display: none;">
+                    <div class="menu-title">设置制表符</div>
+                    <ul class="tabsType">
+                        <li data-value="nbsp">使用空格缩进</li>
+                        <li data-value="tabs">使用 "Tab" 缩进</li>
+                    </ul>
+                    <div class="menu-title" style="margin-top:15px">设置制表符长度</div>
+                    <ul class="tabsSize">
+                        <li data-value="1">1</li>
+                        <li data-value="2">2</li>
+                        <li data-value="3">3</li>
+                        <li data-value="4">4</li>
+                        <li data-value="5">5</li>
+                        <li data-value="6">6</li>
+                    </ul>
+                </div>
+                <div class="menu-item menu-encoding" style="display: none;">
+                    <div class="menu-title">设置文件保存编码格式</div>
+                    <ul></ul>
+                </div>
+                <div class="menu-item menu-files" style="display: none;">
+                    <div class="menu-conter">
+                    	<input type="text" class="menu-input" placeholder="输入语言模式">
+                    	<i class="fa fa-close" aria-hidden="true"></i>
+                    </div>
+                    <div class="menu-title">设置文件语言关联</div>
+                    <ul></ul>
+                </div>
+                <div class="menu-item menu-fontSize" style="display: none;">
+                    <div class="menu-title">设置编辑器字体大小</div>
+                    <div class="menu-conter">
+                        <div class="set_font_size">
+                            <input type="number" min="12" max="45">
+                            <span class="tips error">字体设置范围 12-45</span>
+                            <button class="btn-save">保存</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item menu-jumpLine" style="display: none;">
+                    <div class="menu-title">跳转到指定行</div>
+                    <div class="menu-conter">
+                        <div class="set_jump_line">
+                            <input type="number" min="0">
+                            <button class="btn-save">跳转</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item menu-themes" style="display: none;">
+                    <div class="menu-title">设置编辑器主题</div>
+                    <ul></ul>
+                </div>
+                <div class="menu-item menu-history" style="display: none;">
+                    <div class="menu-title">文件历史版本</div>
+                    <ul></ul>
+                </div>
+                <div class="menu-item menu-setUp" style="display: none;">
+                	<div class="menu-title">编辑器设置【部分设置需要重新打开编辑生效】</div>
+                	<ul class="editor_menu">
+                		<li data-type="wrap">自动换行</li>
+                		<li data-type="enableLiveAutocompletion">代码自动完成</li>
+                		<li data-type="enableSnippets">启用代码段</li>
+                		<li data-type="showInvisibles">显示隐藏字符</li>
+                		<li data-type="showLineNumbers">显示行号</li>
+                		
+                	</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><span class="layui-layer-setwin"><a class="layui-layer-min" href="javascript:;"><cite></cite></a><a class="layui-layer-ico layui-layer-max" href="javascript:;"></a><a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a></span><span class="layui-layer-resize"></span></div><div class="layui-layer-move"></div><div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+      <div class="xl-chrome-ext-bar__logo"></div>
+
+      <a id="xl_chrome_ext_download" href="javascript:;" class="xl-chrome-ext-bar__option">下载视频</a>
+      <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
+    </div></body></html>

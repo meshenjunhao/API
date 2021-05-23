@@ -1,0 +1,122 @@
+{var title=编辑接口}
+{include("head.html")}
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="tab-content">
+                <div class="tab-pane active">
+                 <form name="form">
+                    <div class="form-group">
+                      <label for="name">接口名称</label>
+                      <input class="form-control" type="text" id="name" name="name" value="{$apidata[name]}" placeholder="请输入接口名称">
+                      <small class="help-block">调用方式：<code>&#123$name&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="keywords">接口关键词[SEO]</label>
+                      <input class="form-control" type="text" id="keywords" name="keywords" value="{$apidata[keywords]}" placeholder="请输入接口关键词">
+                      <small class="help-block">调用方式：<code>&#123$keywords&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="description">接口描述语[SEO]</label>
+                      <input class="form-control" type="text" id="description" name="description" value="{$apidata[description]}" placeholder="请输入接口描述">
+                      <small class="help-block">调用方式：<code>&#123$description&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="url">接口地址</label>
+                      <input class="form-control" type="text" id="url" name="url" value="{$apidata[url]}" placeholder="请输入接口地址">
+                      <small class="help-block">调用方式：<code>&#123$url&#125</code></small>
+                    </div>
+                  <div class="form-group">
+                    <label for="status">接口状态</label>
+                    <select class="form-control" id="status" name="status">
+                    {if $apidata[status]==true}
+                       <option value="true">正常</option>
+                       <option value="false">维护</option>
+                       {else}
+                       <option value="false">维护</option>
+                       <option value="true">正常</option>
+                       {/if}
+                     </select>
+                      <small class="help-block">调用方式：<code>&#123$status&#125</code></small>
+                  </div>                   
+                    <div class="form-group">
+                      <label for="request_format">请求方式</label>
+                      <input class="form-control" type="text" id="request_format" name="request_format" value="{$apidata[request_format]}" placeholder="请输入请求方式">
+                      <small class="help-block">调用方式：<code>&#123$request_format&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="return_format">返回格式</label>
+                      <input class="form-control" type="text" id="return_format" name="return_format" value="{$apidata[return_format]}" placeholder="返回格式">
+                      <small class="help-block">调用方式：<code>&#123$return_format&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="inform">接口公告</label>
+                      <textarea class="form-control" id="inform" rows="5" name="inform" placeholder="支持HTML[需要模板支持]，留空则不显示">{$apidata[inform]}</textarea>
+                      <small class="help-block">调用方式：<code>&#123$inform&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="contents">返回结果</label>
+                      <textarea class="form-control" id="contents" rows="5" name="contents" placeholder="请输入返回结果">{$apidata[contents]}</textarea>
+                      <small class="help-block">调用方式：<code>&#123$contents&#125</code></small>
+                    </div>
+                    <div class="form-group" align="center">
+                      <button id="add" type="button" class="btn btn-primary m-r-5" onclick="confirm();">修 改</button>
+                      <button type="button" class="btn btn-default" onclick="javascript:history.back(-1);return false;">返 回</button>
+                    </div>
+                  </form>
+                  
+                </div>
+              </div>
+      
+            </div>
+          </div>
+              
+        </div>
+        
+{include("foot.html")}
+
+<script>
+function confirm() {
+    document.getElementById("add").setAttribute("disabled", true);//设置不可点击
+    var name = form.name.value;
+    var keywords = form.keywords.value;
+    var description = form.description.value;
+    var url = form.url.value;
+    var status = form.status.value;
+    var request_format = form.request_format.value;
+    var return_format = form.return_format.value;
+    var inform = form.inform.value;
+    var contents = form.contents.value; 
+    http_request = new XMLHttpRequest();
+    http_request.onreadystatechange = handle;
+    http_request.open("POST", "#!", true);
+    http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http_request.send('name=' + name + '&keywords=' + keywords + '&description=' + description + '&url=' + url + '&status=' + status + '&request_format=' + request_format + '&return_format=' + return_format + '&inform=' + encodeURIComponent(inform) + '&contents=' + encodeURIComponent(contents));
+}
+function handle() {
+    if (http_request.readyState == 4) {
+        if (http_request.status == 200) {
+            var text = http_request.responseText;
+            var content = JSON.parse(text);
+            if (content.code == 200) {
+                inform(content.msg);
+            } else {
+                inform(content.error, null, null, null, "warning");
+            }
+        } else {
+            inform("服务器错误！", null, null, null, "danger");
+        }
+    }
+    document.getElementById("add").removeAttribute("disabled");//去掉不可点击
+}
+
+{if $out}
+inform("{$alert}", null, null, "警告：", "danger");
+setTimeout(history.go(-1),5000);
+{/if}
+</script>
+
+
+
+</body>
+</html>

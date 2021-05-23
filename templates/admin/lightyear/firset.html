@@ -1,0 +1,143 @@
+{var title=安全设置}
+{var safeset=true}
+{var firset=true}
+{include("head.html")}
+
+        <div class="row">
+          
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="tab-content">
+                <div class="tab-pane active">
+           <strong><small class="help-block">温馨提示：<font color="red">如果服务器自带防火墙，建议关闭本功能，可在一定程度上的提高网站访问速度</font></small></strong>                  
+                 <form name="form">
+                  <div class="form-group">
+                    <label for="firewall">防火墙开关</label>
+                    <select class="form-control" id="firewall" name="firewall">
+                        {if $firewall==true}
+                      <option value="true">开启</option>
+                      <option value="false">关闭</option>
+                        {else}
+                      <option value="false">关闭</option>
+                      <option value="true">开启</option>
+                        {/if}
+                    </select>
+                    <small class="help-block">开启建议：<code>建议开启</code>，主要功能：<code>针对xss跨站攻击、sql注入等敏感字符串进行过滤</code></small>
+                  </div>                   
+                  <div class="form-group">
+                    <label for="ccproof">防CC开关<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalChange">修改防CC设置</button>
+</label>
+                    <select class="form-control" id="ccproof" name="ccproof">
+                        {if $ccproof==true}
+                      <option value="true">开启</option>
+                      <option value="false">关闭</option>
+                        {else}
+                      <option value="false">关闭</option>
+                      <option value="true">开启</option>
+                        {/if}
+                    </select>
+                    <small class="help-block">开启建议：<code>建议开启</code>，主要功能：<code>在规定的时间内访问次数超出允许范围，则返回状态码：444</code></small>
+                  </div>                   
+                  <div class="form-group">
+                    <label for="accesslog">记录网站日志</label>
+                    <select class="form-control" id="accesslog" name="accesslog">
+                        {if $accesslog==true}
+                      <option value="true">开启</option>
+                      <option value="false">关闭</option>
+                        {else}
+                      <option value="false">关闭</option>
+                      <option value="true">开启</option>
+                        {/if}
+                    </select>
+                     <small class="help-block">开启建议：<code>建议关闭</code>，主要功能：<code>记录网站的访客IP，用户UA，提交方式，提交内容等…</code></small>               
+                     </div>                   
+                    <div class="form-group" align="center">
+                      <button type="button" class="btn btn-primary m-r-5" onclick="confirm();">保 存</button>
+                      <button type="button" class="btn btn-default" onclick="javascript:history.back(-1);return false;">返 回</button>
+                    </div>
+                  </form>
+                  
+                </div>
+              </div>
+      
+            </div>
+          </div>
+              
+        </div>
+        
+<div class="modal fade" id="exampleModalChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalChangeLabel" aria-hidden="true" style="display: none;">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id="exampleModalChangeTitle">防CC设置</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form name="cc">
+                    <div class="form-group">
+                      <label for="cycle">访问周期(秒)</label>
+                      <input class="form-control" type="text" id="cycle" name="cycle" value="{$cycle}" placeholder="请输入访问周期，输入建议：120">
+                    </div>
+                    <div class="form-group">
+                      <label for="frequency">访问频率(次)</label>
+                      <input class="form-control" type="text" id="frequency" name="frequency" value="{$frequency}" placeholder="请输入访问频率，输入建议：240">
+                    </div>
+                    <div class="form-group">
+                      <label for="lockdown">封锁时间(秒)</label>
+                      <input class="form-control" type="text" id="lockdown" name="lockdown" value="{$lockdown}" placeholder="请输入封锁时间，输入建议：300">
+                    </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="preventcc();">保存</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+{include("foot.html")}
+
+<script>
+function confirm() {
+    var firewall = form.firewall.value;
+    var ccproof = form.ccproof.value;
+    var accesslog = form.accesslog.value;
+    http_request = new XMLHttpRequest();
+    http_request.onreadystatechange = handle;
+    http_request.open("POST", "#!", true);
+    http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http_request.send('firewall=' + firewall + '&ccproof=' + ccproof + '&accesslog=' + accesslog);
+}
+function preventcc() {
+    var cycle = cc.cycle.value;
+    var frequency = cc.frequency.value;
+    var lockdown = cc.lockdown.value;
+    http_request = new XMLHttpRequest();
+    http_request.onreadystatechange = handle;
+    http_request.open("POST", "#!", true);
+    http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http_request.send('type=preventcc&cycle=' + cycle + '&frequency=' + frequency + '&lockdown=' + lockdown);
+}
+function handle() {
+    if (http_request.readyState == 4) {
+        if (http_request.status == 200) {
+            var text = http_request.responseText;
+            var content = JSON.parse(text);
+            if (content.code == 200) {
+                inform(content.msg);
+            } else {
+                inform(content.error, null, null, null, "warning");
+            }
+        } else {
+            inform("服务器错误！", null, null, null, "danger");
+        }
+    }
+}
+</script>
+
+
+
+</body>
+</html>

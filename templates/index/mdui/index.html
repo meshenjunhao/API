@@ -1,0 +1,119 @@
+{var title=网站首页}
+{include("head.html")}
+		<div class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3 mdui-row-lg-4 mdui-row-xl-5 mdui-grid-list">
+			<div id="card_top_content" style="display:none">
+			</div>
+        {foreach $apilist($key,$value)}
+			<div class="mdui-container mdui-col" id="api_card_2">
+				<div class="mdui-card mdui-hoverable" style="overflow:visible">
+					<div class="mdui-card-header">
+						<!--<img class="mdui-card-header-avatar" src="//app.0047ol.com/ic_launcher.png"
+						/>
+						-->
+						<div class="mdui-card-header-title" style="margin-left:0">
+							{@value[name]}
+							<div class="mybadge mdui-color-{@value[color]} mdui-text-color-white">
+								{@value[status]}
+							</div>
+						</div>
+						<div class="mdui-card-header-subtitle" style="margin-left:0">
+							<i class="mdui-icon material-icons mdui-text-color-theme-icon subtitle-icon-text">
+								access_time
+							</i>
+							更新于{@value[time]}
+						</div>
+					</div>
+					<div class="mdui-card-menu">
+					</div>
+					<div class="mdui-card-content mdui-text-truncate" style="word-wrap:break-word">
+						{@value[description]}
+					</div>
+					<div class="mdui-card-actions">
+						<button onclick="openUrl('/{@value[Y]}/{@value[m]}/{@value[d]}/{@value[appid]}.html')" class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple mdui-float-right"{@value[class]}>
+							查看
+						</button>
+					</div>
+				</div>
+			</div>
+        {/foreach}
+			<!--<button class="mdui-fab mdui-fab-fixed mdui-ripple mdui-m-b-4 mdui-color-theme-accent"
+			onclick="search_api_dlg.open();event.stopPropagation();">
+				<i class="mdui-icon material-icons">
+					search
+				</i>
+			</button>-->
+			<div id="search_api_dlg" class="mc-user-edit mdui-dialog" style="top: 0px; display: none; height: 627px;">
+				<div class="mdui-dialog-title" style="padding:10px 24px 10px">
+					<div class="mdui-valign">
+						<button class="mdui-btn mdui-btn-icon mdui-float-left" style="margin:9px 9px 0 -10px"
+						mdui-dialog-close="">
+							<i class="mdui-icon material-icons">
+								close
+							</i>
+						</button>
+						<div class="mdui-textfield mdui-textfield-floating-label mdui-float-left"
+						style="padding-right:10px;width:100%">
+							<input id="searchbox" class="mdui-textfield-input" type="text" onkeyup="hidCls('api_ranking');searchResult(getVue('searchbox'));"
+							placeholder="请输入要搜索的接口名称" required="">
+						</div>
+						<button class="mdui-btn mdui-btn-icon mdui-ripple mdui-color-theme-accent mdui-float-right"
+						onclick="hidCls('api_ranking');searchResult(getVue('searchbox'));">
+							<i class="mdui-icon material-icons">
+								search
+							</i>
+						</button>
+					</div>
+				</div>
+				<div class="mdui-dialog-content" style="height: 547px;">
+					<div style="padding:0 10px 10px 10px">
+						<ul id="api_ranking" class="mdui-list">
+							<li style="padding:0px 20px 0px">
+								<div class="mdui-list-item-content">
+									<font class="mdui-typo-title">
+										猜你想搜
+									</font>
+								</div>
+							</li>
+							<li class="mdui-list-item mdui-ripple" onclick="openUrl('?action=interface&amp;id=1');">
+								<div class="mdui-list-item-content">
+									百度搜图
+								</div>
+								<i class="mdui-icon material-icons mdui-ripple mdui-text-color-pink" style="font-size:18px">
+									equalizer
+								</i>
+								累计使用0次
+							</li>
+							<li class="mdui-list-item mdui-ripple" onclick="openUrl('?action=interface&amp;id=2');">
+								<div class="mdui-list-item-content">
+									成语查询
+								</div>
+								<i class="mdui-icon material-icons mdui-ripple mdui-text-color-pink" style="font-size:18px">
+									equalizer
+								</i>
+								累计使用0次
+							</li>
+							<li class="mdui-list-item mdui-ripple" onclick="openUrl('?action=interface&amp;id=3');">
+								<div class="mdui-list-item-content">
+									葫芦侠
+								</div>
+								<i class="mdui-icon material-icons mdui-ripple mdui-text-color-pink" style="font-size:18px">
+									equalizer
+								</i>
+								累计使用0次
+							</li>
+						</ul>
+						<div id="livesearch">
+						</div>
+					</div>
+				</div>
+			</div>
+			<button id="fab_up" onclick="scrolTop('body_content');" class="mdui-fab mdui-fab-hide mdui-fab-fixed mdui-ripple mdui-m-b-4 mdui-color-theme-accent">
+				<i class="mdui-icon material-icons">
+					expand_less
+				</i>
+			</button>
+			{include("foot.html")}
+		</div>
+	</body>
+
+</html>

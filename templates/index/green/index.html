@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$name} - {$subtitle}</title>
+    <meta name="description" content="{$description}">
+    <meta name="keywords" content="{$keywords}">
+    <link href="{$templates}/css/Bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{$templates}/css/oneui.css" rel="stylesheet">
+</head>
+<body>
+<header class="site-header">
+    <nav class="nav_jsxs">
+        <span style="float: left;"><a class="logo_jsxs" href=""></a></span>
+        <a target="_blank" href="{$qun}">反馈</a>
+    </nav>
+    <div class="box-text">
+        <h1>{$name}</h1>
+        <p>稳定、快速、免费的 API 接口服务<br><span class="package-amount">共收录了 <strong>{$api}</strong> 个接口</span> · <span class="package-amount">今日调用 <strong>{$call}</strong> 次</span>
+        </p>
+    </div>
+</header>
+<section class="content content-boxed">
+    <p class="p-jsxs">拒绝流量劫持，全面使用 HTTPS！</p>
+    <div class="row row_jsxs">
+        {foreach $apilist($key,$value)}
+<div class="col-md-4"><a target="_blank" class="block block-link-hover2 ribbon ribbon-modern ribbon-{@value[color]}" href="/{@value[Y]}/{@value[m]}/{@value[d]}/{@value[appid]}.html"><div class="ribbon-box font-w600">{@value[status]}</div><div class="block-content"><div class="h4 push-5">{@value[name]}</div><p class="text-muted">{@value[description]}</p></div></a></div>        
+        {/foreach}
+        <div class="col-sm-12">
+            <div class="block block-link-hover2 ribbon ribbon-modern ribbon-success">
+                <div class="block-content">
+                    <a class="block" href="https://api.oioweb.cn">
+                        <p class="text-center" style="margin-bottom: 10px"><a href="http://beian.miit.gov.cn" target="_blank"><script type="text/javascript" src="https://xiaojieapi.com/api/v3/get/icp" charset="utf-8"></script></a> • {$name}提供免费API服务</p>
+                        <p class="text-center"  style="margin-bottom: 10px">实时调用：{$apicall} 次 · 稳定运行：{$date} 天 </p>
+                        <p class="text-center">反馈或建议请发送邮件至：{$mail}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

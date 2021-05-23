@@ -1,0 +1,139 @@
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta name="referrer" content="never">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp,must-revalidate">
+		<meta http-equiv="expires" content="0">
+		<meta name="name" itemprop="name" content="{$name}">
+    <title>{$title}-{$name}</title>
+    <meta name="description" content="{$description}">
+    <meta name="keywords" content="{$keywords}">
+		<link rel="preconnect" href="//cdn.w3cbus.com">
+		<link rel="preconnect" href="//cdn.jsdelivr.net">
+		<link type="text/css" rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css">
+		<link type="text/css" rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/vs.min.css">
+		<link type="text/css" rel="stylesheet" href="//cdn.w3cbus.com/mdui.org/docs/assets/docs/css/highlight-vs2015-style.css">
+		<link type="text/css" rel="stylesheet" href="{$templates}/assets/css/mdui.css">
+		<link type="text/css" rel="stylesheet" href="{$templates}/assets/css/mdclub.css">
+		<link type="text/css" rel="stylesheet" href="{$templates}/assets/css/index.css">
+	</head>
+	<body id="body_content" class="mdui-theme-primary-blue mdui-theme-accent-blue mdui-appbar-with-toolbar mdui-loaded"
+	style="">
+		<div id="top-titlebar" class="mdui-appbar mdui-appbar-fixed mdui-color-white">
+			<div class="mdui-toolbar mdui-color-white">
+				<a href="javascript:toggle_drawer();" class="mdui-btn mdui-btn-icon mdui-ripple">
+					<i class="mdui-icon material-icons">
+						menu
+					</i>
+				</a>
+				<a href="javascript:scrolTop('body_content');" class="mdui-typo-title">
+					{$name}
+				</a>
+				<div class="mdui-toolbar-spacer">
+				</div>
+				<a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-menu="{target:'#toolbar_menu'}">
+					<i class="mdui-icon material-icons">
+						more_vert
+					</i>
+				</a>
+				<ul class="mdui-menu" id="toolbar_menu" style="transform-origin: 100% 0px; position: fixed;">
+					<li class="mdui-menu-item">
+						<a href="/about.html" class="mdui-ripple">
+							关于我们
+						</a>
+					</li>
+					<li class="mdui-menu-item">
+						<a href="/admin/" class="mdui-ripple">
+							登录后台
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="mc-drawer mdui-drawer mdui-drawer-full-height mdui-drawer-close"
+		id="left-drawer">
+			<div class="mdui-hidden-sm-down" style="margin-top:64px">
+			</div>
+			<ul class="mdui-list">
+				<div class="mdui-card-media mdui-ripple mdui-ripple-white" style="border-radius: 0px">
+					<img id="ic_background" src="{$templates}/assets/img/background.jpg">
+					<div class="mdui-card-media-covered mdui-card-media-covered-gradient">
+						<div class="mdui-card-primary" style="position:relative;">
+							<div class="mdui-card-primary-title">
+								<img id="authorimgs" src="https://q.qlogo.cn/headimg_dl?dst_uin={$qq}&spec=100" class="mdui-img-circle">
+							</div>
+							<div class="mdui-typo-title mdui-text-color-white drawer-title-text">
+								{$name}
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="javascript:close_drawer();locaUrl('./');">
+					<li class="mdui-list-item mdui-ripple">
+						<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">
+							home
+						</i>
+						<div class="mdui-list-item-content">
+							首页
+						</div>
+					</li>
+				</a>
+				<li class="mdui-subheader">
+					更多
+				</li>
+				<a href="javascript:close_drawer();locaUrl('/about.html');">
+					<li class="mdui-list-item mdui-ripple">
+						<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">
+							info
+						</i>
+						<div class="mdui-list-item-content">
+							关于
+						</div>
+					</li>
+				</a>
+			</ul>
+			<div class="copyright">
+				<p style="font-size:11px">
+					<br>
+					<a href="//beian.miit.gov.cn/" target="_blank">
+					</a>
+					<br>
+					©
+					<font class="copyright_year">
+						2021
+					</font>
+					<a href="/">
+						{$name}
+					</a>
+					<br>
+					Powered By
+					<a href="//www.mdui.org">
+						MDUI
+					</a>
+					<br>
+					Theme By
+					<a href="//0047ol.com">
+						0047ol
+					</a>
+					&amp;
+					<a href="//imcys.com">
+						IMCYS
+					</a>
+				</p>
+			</div>
+		</div>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js">
+		</script>
+		<script type="text/javascript" src="//cdn.w3cbus.com/mdclub.org/static/docs/index.js">
+		</script>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js">
+		</script>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js">
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0">
+		</script>
+		<script type="text/javascript" src="{$templates}/assets/js/0047ol.js">
+		</script>

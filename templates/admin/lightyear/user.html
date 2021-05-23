@@ -1,0 +1,73 @@
+{var title=账号设置}
+{var webset=true}
+{var config=true}
+{include("head.html")}
+
+        <div class="row">
+          
+          <div class="col-lg-12">
+            <div class="card">
+              <ul class="nav nav-tabs page-tabs pt-2 pl-3 pr-3">
+                <li class="nav-item"> <a href="./config.html" class="nav-link">基本设置</a> </li>
+                <li class="nav-item"> <a href="./contact.html" class="nav-link">联系方式</a> </li>
+                <li class="nav-item"> <a href="#!" class="nav-link active">账号设置</a> </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active">
+                  
+                 <form name="form">
+                    <div class="form-group">
+                      <label for="user">管理员账号</label>
+                      <input class="form-control" type="text" id="user" name="user" value="{$user}" placeholder="请输入管理员QQ">
+                      <small class="help-block">调用方式：<code>&#123$user&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="pass">管理员密码</label>
+                      <input class="form-control" type="password" id="pass" name="pass" value="" placeholder="留空则不修改密码">
+                    </div>
+                    <div class="form-group" align="center">
+                      <button type="button" class="btn btn-primary m-r-5" onclick="confirm();">保 存</button>
+                      <button type="button" class="btn btn-default" onclick="javascript:history.back(-1);return false;">返 回</button>
+                    </div>
+                  </form>
+                  
+                </div>
+              </div>
+      
+            </div>
+          </div>
+              
+        </div>
+        
+
+{include("foot.html")}
+
+<script>
+function confirm() {
+    var user = form.user.value;
+    var pass = form.pass.value;
+    http_request = new XMLHttpRequest();
+    http_request.onreadystatechange = handle;
+    http_request.open("POST", "#!", true);
+    http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http_request.send('user=' + user + '&pass=' + pass);
+}
+function handle() {
+    if (http_request.readyState == 4) {
+        if (http_request.status == 200) {
+            var text = http_request.responseText;
+            var content = JSON.parse(text);
+            if (content.code == 200) {
+                inform(content.msg);
+            } else {
+                inform(content.error, null, null, null, "warning");
+            }
+        } else {
+            inform("服务器错误！", null, null, null, "danger");
+        }
+    }
+}
+</script>
+
+</body>
+</html>

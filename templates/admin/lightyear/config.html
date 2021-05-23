@@ -1,0 +1,136 @@
+{var title=基本设置}
+{var webset=true}
+{var config=true}
+{include("head.html")}
+
+        <div class="row">
+          
+          <div class="col-lg-12">
+            <div class="card">
+              <ul class="nav nav-tabs page-tabs pt-2 pl-3 pr-3">
+                <li class="nav-item"> <a href="#!" class="nav-link active">基本设置</a> </li>
+                <li class="nav-item"> <a href="./contact.html" class="nav-link">联系方式</a> </li>
+                <li class="nav-item"> <a href="./user.html" class="nav-link">账号设置</a> </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active">
+                  
+                 <form name="form">
+                    <div class="form-group">
+                      <label for="name">网站名称</label>
+                      <input class="form-control" type="text" id="name" name="name" value="{$name}" placeholder="请输入站点名称">
+                      <small class="help-block">调用方式：<code>&#123$name&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="subtitle">网站副标题</label>
+                      <input class="form-control" type="text" id="subtitle" name="subtitle" value="{$subtitle}" placeholder="请输入站点副标题">
+                      <small class="help-block">调用方式：<code>&#123$subtitle&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="keywords">网站关键词[SEO]</label>
+                      <input class="form-control" type="text" id="keywords" name="keywords" value="{$keywords}" placeholder="请输入站点关键词">
+                      <small class="help-block">调用方式：<code>&#123$keywords&#125</code></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="description">网站描述语[SEO]</label>
+                      <input class="form-control" type="text" id="description" name="description" value="{$description}" placeholder="请输入站点描述">
+                      <small class="help-block">调用方式：<code>&#123$description&#125</code></small>
+                    </div>
+                   <div class="form-group">
+                    <label for="sort">接口排序方式</label>
+                    <select class="form-control" id="sort" name="sort">
+                        {if $sort==true}
+                      <option value="true">倒序排序</option>
+                      <option value="false">顺序排序</option>
+                        {else}
+                      <option value="false">顺序排序</option>
+                      <option value="true">倒序排序</option>
+                        {/if}
+                    </select>
+                    <small class="help-block">倒序排序：最新添加的接口排在上面。顺序排序相反</small>
+                  </div>                   
+                  <div class="form-group">
+                    <label for="prevention">是否允许在QQ或微信内打开网站(<small class="help-block">本设置是全局性的，禁止后所有页面都无法在QQ打开</small>)</label>
+                    <select class="form-control" id="prevention" name="prevention">
+                        {if $system[prevention]==false}
+                        <option value="false">允许</option>
+                        <option value="true">不允许</option>
+                        {else}
+                        <option value="true">不允许</option>
+                        <option value="false">允许</option>
+                        {/if}
+                    </select>
+                      <small class="help-block">调用方式：<code>&#123$system[prevention]&#125</code></small>
+                  </div>                   
+                    <div class="form-group">
+                      <label for="run">后台目录(<small class="help-block"><font color="red">仅支持一级目录，修改后仅能通过指定目录访问后台</font></small>)</label>
+                      <input class="form-control" type="text" id="run" name="run" value="{$system[run]}" placeholder="请输入站点后台目录">
+                      <small class="help-block">调用方式：<code>&#123$system[run]&#125</code></small>
+                         </div>
+                <div class="form-group">
+                 <label for="date">建站时间</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" data-provide="datepicker" data-today-highlight="true" data-autoclose="false" id="date" name="date" value="{$date}" placeholder="请输入建站时间" />
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                    </div>
+                  </div>
+                      <small class="help-block">调用方式：<code>&#123$date&#125</code></small>
+                </div>
+                    <div class="form-group">
+                      <label for="close">闭站原因(<small class="help-block">站点关闭后将不能访问，后台可正常登录</small>)</label>
+                      <textarea class="form-control" id="close" rows="5" name="close" placeholder="关闭网站的原因，不填写则不闭站">{$close}</textarea>
+                      <small class="help-block">调用方式：<code>&#123$close&#125</code></small>
+                    </div>
+                    <div class="form-group" align="center">
+                      <button type="button" class="btn btn-primary m-r-5" onclick="confirm();">保 存</button>
+                      <button type="button" class="btn btn-default" onclick="javascript:history.back(-1);return false;">返 回</button>
+                    </div>
+                  </form>
+                  
+                </div>
+              </div>
+      
+            </div>
+          </div>
+              
+        </div>
+        
+
+{include("foot.html")}
+<script>
+function confirm() {
+    var run = form.run.value;
+    var sort = form.sort.value;
+    var date = form.date.value;
+    var close = form.close.value;
+    var name = form.name.value;
+    var subtitle = form.subtitle.value;
+    var keywords = form.keywords.value;
+    var prevention = form.prevention.value;
+    var description = form.description.value;
+    http_request = new XMLHttpRequest();
+    http_request.onreadystatechange = handle;
+    http_request.open("POST", "#!", true);
+    http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http_request.send('run=' + run + '&sort=' + sort + '&close=' + close + '&name=' + name + '&subtitle=' + subtitle + '&keywords=' + keywords + '&prevention=' + prevention + '&description=' + description + '&date=' + date);
+}
+function handle() {
+    if (http_request.readyState == 4) {
+        if (http_request.status == 200) {
+            var text = http_request.responseText;
+            var content = JSON.parse(text);
+            if (content.code == 200) {
+                inform(content.msg);
+            } else {
+                inform(content.error, null, null, null, "warning");
+            }
+        } else {
+            inform("服务器错误！", null, null, null, "danger");
+        }
+    }
+}
+</script>
+
+</body>
+</html>
