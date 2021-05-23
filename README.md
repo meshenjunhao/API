@@ -1,7 +1,7 @@
 # 小杰API后台管理系统
  当前版本：1.0.7
 
- ### 安装教程
+ ## 安装教程
  注意事项：
 1.PHP版本要求=>5.6
 2.需要安装SG11加密组件
@@ -11,7 +11,7 @@
 
 敬告：安装顺序不建议颠倒，以免带来不必要的问题！
 
-## 安装说明(宝塔)：
+### 安装说明(宝塔)：
 
 1.上传源码
 2.打开域名，点击安装。
@@ -20,7 +20,7 @@
 5.设置伪静态
 6.登录后台
 
-## 安装说明(kangle)：
+### 安装说明(kangle)：
 
 1.上传源码
 2.打开域名，点击安装。
@@ -29,14 +29,14 @@
 5.登录后台
 默认账号/密码：admin/123456
 
-### 伪静态
-## nginx伪静态
+## 伪静态
+### nginx伪静态
 ```
 if (!-e $request_filename) {
    rewrite ^/(.*)$ /index.php?q=$1 last;
 }
 ```
-## apache伪静态
+### apache伪静态
 ```
 <IfModule mod_rewrite.c>
  RewriteEngine on
@@ -47,7 +47,7 @@ if (!-e $request_filename) {
 </IfModule>
 ```
 
- ### 目录结构
+ ## 目录结构
  ```
  www                      WEB部署目录
 ├─includes               公共目录
@@ -84,7 +84,7 @@ if (!-e $request_filename) {
 └─index.php                  安装引导页
 ```
 
-### 更新日志
+## 更新日志
 小杰API后台管理系统(JieAdmin)
 
 更新日志：
